@@ -28,6 +28,14 @@ const createRouter = function(collection) {
         })
     })
 
+    router.post('/', (req, res) => {
+        const newItem = req.body
+        collection
+        .insertOne(newItem)
+        .then(() => collection.find().toArray())
+        .then((docs) => res.json(docs))
+    })
+
     return router
 }
 
