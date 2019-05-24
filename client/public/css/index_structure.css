@@ -1,0 +1,14 @@
+*{
+  margin:0;
+}
+
+body{
+  width:100%;
+}
+
+
+.li{
+  border: 5px solid black;
+  height: 75px;
+  list-style:none;
+}
