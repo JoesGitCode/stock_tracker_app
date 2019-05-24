@@ -8,10 +8,14 @@ const Stock = function (url) {
 Stock.prototype.bindEvents = function () {
   // console.log('subscribed to ticker selected');
   PubSub.subscribe('SearchFormView:ticker-selected', (event) => {
-  const stockTickerName = event.detail
-  const companyInfoFromApi = this.url + stockTickerName;
+  const stockTickerName = event.detail.toUpperCase()
+  console.log("i am the stock ticker", stockTickerName);
+  const companyInfoFromApi = this.url
+  const json = '?datatype=json'
+  const finalUrl = companyInfoFromApi + stockTickerName
+  console.log(finalUrl);
   // console.log(companyInfoFromApi);
-  PubSub.publish("StockModel: Company-realtime-info" , companyInfoFromApi)
+  PubSub.publish("StockModel: Company-realtime-info" , finalUrl )
   })
 };
 
