@@ -1,12 +1,11 @@
 {
   "name": "stock_tracker_app",
   "version": "1.0.0",
-  "description": "",
   "main": "webpack.config.js",
   "scripts": {
     "start": "node server.js",
     "server:dev": "nodemon server.js",
-    "build": "webpack",
+    "build": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -18,7 +17,16 @@
     "webpack-cli": "^3.3.2"
   },
   "dependencies": {
-    "express": "^4.17.0",
-    "mongodb": "^3.2.6"
-  }
+    "mongodb": "^3.2.6",
+    "express": "^4.17.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoesGitCode/stock_tracker_app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JoesGitCode/stock_tracker_app/issues"
+  },
+  "homepage": "https://github.com/JoesGitCode/stock_tracker_app#readme",
+  "description": ""
 }
