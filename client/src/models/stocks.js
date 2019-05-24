@@ -11,8 +11,7 @@ Stock.prototype.bindEvents = function () {
   const stockTickerName = event.detail.toUpperCase()
   console.log("i am the stock ticker", stockTickerName);
   const companyInfoFromApi = this.url
-  const json = '?datatype=json'
-  const finalUrl = companyInfoFromApi + stockTickerName
+  const finalUrl = companyInfoFromApi + '/' + stockTickerName
   console.log(finalUrl);
   // console.log(companyInfoFromApi);
   PubSub.publish("StockModel: Company-realtime-info" , finalUrl )
