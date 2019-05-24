@@ -13,8 +13,8 @@ StockGridView.prototype.bindEvents = function () {
 StockGridView.prototype.render = function (container) {
 
   PubSub.subscribe("StockModel: Company-realtime-info", (event) => {
-    console.log('this is the render', event.target);
-    const companyInfo = event.target;
+    console.log('this is the render', event.detail);
+    const companyInfo = event.detail;
     return companyInfo
   })
 };
