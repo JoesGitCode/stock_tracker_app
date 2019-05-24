@@ -8,6 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const stocksearchview = new StockSearchView(element)
   stocksearchview.bindEvents();
 
-  const stockModel = new StockModel(`www.bbc.com`)
+  const stockModel = new StockModel(`https://financialmodelingprep.com/api/company/real-time-price/`)
   stockModel.bindEvents()
 })
