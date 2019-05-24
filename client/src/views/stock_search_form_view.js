@@ -9,6 +9,7 @@ StockSearchView.prototype.bindEvents = function () {
     console.log("HELLLLLLOOOOOO");
     event.preventDefault()
     const data = event.target.stockname.value
+    console.log(data);
     PubSub.publish('SearchFormView:ticker-selected', data)
   })
 
