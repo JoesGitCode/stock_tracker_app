@@ -6,21 +6,30 @@ const StockView = function(container){
 
 StockView.prototype.render = function (companyInfo) {
 
-  const companyContainer = document.createElement('div');
-  companyContainer.id = 'companySearch'
-  this.container.appendChild(companyContainer)
+  const companyContainerLeft = document.createElement('div');
+  const companyContainerRight = document.createElement('div');
+  companyContainerLeft.id = 'companySearchLeft'
+  companyContainerLeft.id = 'companySearchRight'
+  this.container.appendChild(companyContainerLeft)
+  this.container.appendChild(companyContainerRight)
 
   const companySymbol = this.createSymbol(companyInfo.symbol)
-  companyContainer.appendChild(companySymbol)
+  companyContainerLeft.appendChild(companySymbol)
 
-  const companyRevenue = this.createClose(companyInfo.historical[companyInfo.historical.length -1].close)
-  companyContainer.appendChild(companyRevenue)
+  const displayCompanyClose =`close: ${companyInfo.historical[companyInfo.historical.length -1].close}`
+  const companyRevenue = this.createClose(displayCompanyClose)
+  companyContainerLeft.appendChild(companyRevenue)
 
-  const companyGrossProfit = this.createOpen(companyInfo.historical[companyInfo.historical.length -1].open)
-  companyContainer.appendChild(companyGrossProfit)
+  const displayCompanyOpen =`Open: ${companyInfo.historical[companyInfo.historical.length -1].open}`
+  const companyGrossProfit = this.createOpen(displayCompanyOpen)
+  companyContainerLeft.appendChild(companyGrossProfit)
 
-  const companyVolume = this.createVolume(companyInfo.historical[companyInfo.historical.length -1].volume)
-  companyContainer.appendChild(companyVolume)
+  const displayCompanyVolume = `Volume: ${companyInfo.historical[companyInfo.historical.length -1].volume}`
+  const companyVolume = this.createVolume(displayCompanyVolume)
+  companyContainerRight.appendChild(companyVolume)
+
+  const currentSharePrice = companyInfo.historical[companyInfo.historical.length -1]
+  const buyShareForm = this.createForm(currentSharePrice)
 
   // const companyRevenue = this.createRevenue(companyInfo.financials[0].Revenue)
   // companyContainer.appendChild(companyRevenue)
@@ -49,6 +58,12 @@ StockView.prototype.createVolume= function (textContent) {
   volume.textContent = textContent
   return volume
 };
+
+StockView.prototype.createForm(companyInfo){
+  const currentShareprice = document.createElement('form')
+  const buy
+  currentSharePrice.appendChild
+}
 
 
 
