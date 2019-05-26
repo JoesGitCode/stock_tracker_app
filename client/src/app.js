@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
   stocksearchview.bindEvents();
 
 
-  const container = document.querySelector('#held_stocks_list_container')
+  const container = document.querySelector('#stock_search_stock')
   const stockGridView = new StockGridView(container)
   stockGridView.bindEvents()
 
 
-  const stockModel = new StockModel('https://financialmodelingprep.com/api/v3/financials/income-statement/')
+  const stockModel = new StockModel('https://financialmodelingprep.com/api/v3/historical-price-full/')
   stockModel.bindEvents()
 })

@@ -12,3 +12,10 @@ body{
   height: 75px;
   list-style:none;
 }
+
+.search-box{
+  width:100%;
+  display: flex;
+
+  border:2px solid black;
+}
