@@ -12,8 +12,8 @@ Stock.prototype.bindEvents = function () {
   const stockTickerName = event.detail.toUpperCase()
   console.log("i am the stock ticker", stockTickerName);
   const companyInfoFromApi = this.url
-  const json = '?datatype=json'
-  const request = new RequestHelper(companyInfoFromApi + stockTickerName)
+  const json = '?serietype=line'
+  const request = new RequestHelper(companyInfoFromApi + stockTickerName + json)
   console.log(request);
   request.get()
   .then((data) => {

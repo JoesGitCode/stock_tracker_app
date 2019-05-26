@@ -20,6 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
   graphView.bindEvents()
 
 
-  const stockModel = new StockModel('https://financialmodelingprep.com/api/v3/financials/income-statement/')
+  const stockModel = new StockModel('https://financialmodelingprep.com/api/v3/historical-price-full/')
   stockModel.bindEvents()
 })
