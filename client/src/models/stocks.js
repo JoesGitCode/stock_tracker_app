@@ -21,9 +21,12 @@ Stock.prototype.bindEvents = function () {
 };
 
 
-
-
-
-
+Stock.prototype.getData = function() {
+    this.request.get()
+      .then((stocks) =>{
+        PubSub.publish('Stock:data-loaded', stocks);
+      })
+      .catch(console.error)
+}
 
 module.exports = Stock;

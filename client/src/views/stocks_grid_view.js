@@ -11,7 +11,6 @@ StockGridView.prototype.bindEvents = function () {
   PubSub.subscribe("StockModel: Company-realtime-info", (event) => {
     this.container.innerHTML="";
     this.render(event.detail)
-    this.getSavedData()
   })
 };
 
