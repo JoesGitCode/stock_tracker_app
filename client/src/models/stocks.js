@@ -7,23 +7,23 @@ const Stock = function (url) {
 };
 
 Stock.prototype.bindEvents = function () {
-  // console.log('subscribed to ticker selected');
-  PubSub.subscribe('SearchFormView:ticker-selected', (event) => {
-  const stockTickerName = event.detail.toUpperCase()
-  console.log("i am the stock ticker", stockTickerName);
-  const companyInfoFromApi = this.url
-  const json = '?datatype=json'
-  const request = new RequestHelper(companyInfoFromApi + stockTickerName)
-  console.log(request);
-  request.get()
-  .then((data) => {
-    const companyInfo = data
-    console.log('compnay info >??????', companyInfo);
 
-    PubSub.publish("StockModel: Company-realtime-info" , companyInfo )
-  })
+  PubSub.subscribe('SearchFormView:ticker-selected', (event) => {
+    const stockTickerName = event.detail.toUpperCase()
+    const companyInfoFromApi = this.url
+    const request = new RequestHelper(companyInfoFromApi + stockTickerName)
+    request.get()
+    .then((data) => {
+      const companyInfo = data
+      PubSub.publish("StockModel: Company-realtime-info" , companyInfo )
+    })
   })
 };
+
+
+
+
+
 
 
 module.exports = Stock;

@@ -2,6 +2,7 @@ const PubSub = require('../helpers/pub_sub.js')
 
 const StockView = function(container){
   this.container = container
+  console.log(this.container);
 }
 
 StockView.prototype.render = function (companyInfo) {
@@ -67,11 +68,15 @@ StockView.prototype.createForm = function (companyInfo){
   const buyInputPriceQauntity = document.createElement('input')
   const buyShareButton = document.createElement('input')
 
+  currentSharePrice.setAttribute('id', 'buy-share-form')
+
   inputCompanyName.setAttribute('type', 'text')
+  inputCompanyName.setAttribute('name', 'company')
   inputCompanyName.setAttribute('value', companyInfo.symbol)
   inputCompanyName.setAttribute("hidden", true)
 
   buyInputPrice.setAttribute('type', 'text')
+  buyInputPrice.setAttribute('name', 'current-share-price')
   buyInputPrice.setAttribute('value', companyInfoFinances.open)
   buyInputPrice.setAttribute("hidden", true)
 
@@ -86,6 +91,15 @@ StockView.prototype.createForm = function (companyInfo){
   currentSharePrice.appendChild(buyInputPriceQauntity)
   currentSharePrice.appendChild(buyShareButton)
   return currentSharePrice
+}
+
+StockView.prototype.buyStocks = function (){
+  const saveStockFormContainer = document.querySelector('#buy-share-form');
+  saveStockFormContainer.addEventListener('submit', (event)=>{
+    event.preventDefault()
+    const data = event.target
+    PubSub.publish('stock_view: shares-bought-published', data )
+  })
 }
 
 
