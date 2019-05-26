@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const StockSearchView = __webpack_require__(/*! ./views/stock_search_form_view.js */ \"./client/src/views/stock_search_form_view.js\");\nconst StockModel = __webpack_require__(/*! ./models/stocks.js */ \"./client/src/models/stocks.js\")\nconst StockGridView = __webpack_require__(/*! ./views/stocks_grid_view.js */ \"./client/src/views/stocks_grid_view.js\")\n\n\ndocument.addEventListener('DOMContentLoaded', () => {\n\n  const element = document.querySelector('#input_stock_pick')\n  const stocksearchview = new StockSearchView(element)\n  stocksearchview.bindEvents();\n\n\n  const container = document.querySelector('#held_stocks_list_container')\n  const stockGridView = new StockGridView(container)\n  stockGridView.bindEvents()\n\n\n  const stockModel = new StockModel('https://financialmodelingprep.com/api/v3/financials/income-statement/')\n  stockModel.bindEvents()\n})\n\n\n//# sourceURL=webpack:///./client/src/app.js?");
+eval("const StockSearchView = __webpack_require__(/*! ./views/stock_search_form_view.js */ \"./client/src/views/stock_search_form_view.js\");\nconst StockModel = __webpack_require__(/*! ./models/stocks.js */ \"./client/src/models/stocks.js\")\nconst StockGridView = __webpack_require__(/*! ./views/stocks_grid_view.js */ \"./client/src/views/stocks_grid_view.js\")\n\n\ndocument.addEventListener('DOMContentLoaded', () => {\n\n  const element = document.querySelector('#input_stock_pick')\n  const stocksearchview = new StockSearchView(element)\n  stocksearchview.bindEvents();\n\n\n  const container = document.querySelector('#stock_search_stock')\n  const stockGridView = new StockGridView(container)\n  stockGridView.bindEvents()\n\n\n  const stockModel = new StockModel('https://financialmodelingprep.com/api/v3/financials/income-statement/')\n  stockModel.bindEvents()\n})\n\n\n//# sourceURL=webpack:///./client/src/app.js?");
 
 /***/ }),
 
@@ -141,6 +141,17 @@ eval("const PubSub = __webpack_require__(/*! ../helpers/pub_sub.js */ \"./client
 
 /***/ }),
 
+/***/ "./client/src/views/stock_view.js":
+/*!****************************************!*\
+  !*** ./client/src/views/stock_view.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const PubSub = __webpack_require__(/*! ../helpers/pub_sub.js */ \"./client/src/helpers/pub_sub.js\")\n\nconst StockView = function(container){\n  this.container = container\n}\n\nStockView.prototype.render = function (companyInfo) {\n\n  const companyContainer = document.createElement('div');\n  companyContainer.id = 'companySearch'\n  this.container.appendChild(companyContainer)\n\n  const companySymbol = this.createSymbol(companyInfo.symbol)\n  companyContainer.appendChild(companySymbol)\n};\n\nStockView.prototype.createSymbol = function(textContent) {\n  const symbol = document.createElement('h3')\n  symbol.textContent = textContent\n  return symbol\n};\n\n\nmodule.exports = StockView;\n\n\n//# sourceURL=webpack:///./client/src/views/stock_view.js?");
+
+/***/ }),
+
 /***/ "./client/src/views/stocks_grid_view.js":
 /*!**********************************************!*\
   !*** ./client/src/views/stocks_grid_view.js ***!
@@ -148,7 +159,7 @@ eval("const PubSub = __webpack_require__(/*! ../helpers/pub_sub.js */ \"./client
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const PubSub = __webpack_require__ (/*! ../helpers/pub_sub.js */ \"./client/src/helpers/pub_sub.js\")\n\n\nconst StockGridView = function (container){\n  this.container = container;\n}\n\n\nStockGridView.prototype.bindEvents = function () {\n  console.log(this.container);\n  PubSub.subscribe(\"StockModel: Company-realtime-info\", (event) => {\n    console.log('this is the render', event.detail);\n    const companyInfo = event.detail;\n\n    })\n};\n\n\nmodule.exports = StockGridView;\n\n\n//# sourceURL=webpack:///./client/src/views/stocks_grid_view.js?");
+eval("const PubSub = __webpack_require__ (/*! ../helpers/pub_sub.js */ \"./client/src/helpers/pub_sub.js\")\nconst StockView = __webpack_require__ (/*! ./stock_view.js */ \"./client/src/views/stock_view.js\")\n\n\nconst StockGridView = function(container){\n  this.container = container;\n\n}\n\n\nStockGridView.prototype.bindEvents = function () {\n  PubSub.subscribe(\"StockModel: Company-realtime-info\", (event) => {\n  this.render(event.detail)\n    })\n};\n\nStockGridView.prototype.render = function(companyInfo) {\n  const stockView = new StockView(this.container)\n  stockView.render(companyInfo)\n};\n\n\nmodule.exports = StockGridView;\n\n\n//# sourceURL=webpack:///./client/src/views/stocks_grid_view.js?");
 
 /***/ })
 

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   stocksearchview.bindEvents();
 
 
-  const container = document.querySelector('#held_stocks_list_container')
+  const container = document.querySelector('#stock_search_stock')
   const stockGridView = new StockGridView(container)
   stockGridView.bindEvents()
 
