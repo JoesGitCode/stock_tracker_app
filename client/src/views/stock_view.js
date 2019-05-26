@@ -109,6 +109,8 @@ StockView.prototype.createPurchase = function (form) {
     quantity: form.quantity.value,
     strike_price:form.strike_price.value
   }
+  console.log(newPurchase);
+  return newPurchase
 };
 
 

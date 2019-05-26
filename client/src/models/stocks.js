@@ -1,9 +1,11 @@
 const PubSub = require ('../helpers/pub_sub.js')
 const RequestHelper = require('../helpers/request_helper.js')
 
+
+
 const Stock = function (url) {
   this.url = url
-  console.log(this.url);
+  this.request = new RequestHelper('http://localhost:3000/api/stocks')
 };
 
 Stock.prototype.bindEvents = function () {
@@ -16,29 +18,33 @@ Stock.prototype.bindEvents = function () {
     .then((data) => {
       const companyInfo = data
       PubSub.publish("StockModel: Company-realtime-info" , companyInfo )
+    })
+  })
+
 
   PubSub.subscribe('stock_view:shares-bought-published', (event) => {
-    console.log("subscribing to bought data:", event);
+    console.log(event.detail);
+    this.postBoughtStock(event.detail)
   })
-
-    })
-  })
-
-  Stock.prototype.getData = function() {
-    this.request.get()
-    .then((stocks) =>{
-      PubSub.publish('Stock:data-loaded', stocks);
-    })
-    .catch(console.error)
-  }
-
-  Stock.prototype.postBoughtShares = function(BuyShareInfo){
-    this.request.post(BuyShareInfo)
-    .then((shares) => {
-      PubSub.publish('Stock:data-loaded', shares)
-    })
-  }
 };
+
+
+Stock.prototype.getData = function() {
+  this.request.get()
+  .then((stocks) =>{
+    PubSub.publish('Stock:data-loaded', stocks);
+  })
+  .catch(console.error)
+}
+
+
+Stock.prototype.postBoughtStock = function(BuyShareInfo){
+  this.request.post(BuyShareInfo)
+  .then((shares) => {
+    PubSub.publish('Stock:data-loaded', shares)
+  })
+}
+
 
 
 
