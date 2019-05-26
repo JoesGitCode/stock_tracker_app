@@ -59,11 +59,11 @@ StockView.prototype.createVolume= function (textContent) {
   return volume
 };
 
-StockView.prototype.createForm(companyInfo){
-  const currentShareprice = document.createElement('form')
-  const buy
-  currentSharePrice.appendChild
-}
+// StockView.prototype.createForm(companyInfo){
+//   const currentShareprice = document.createElement('form')
+//   const buy
+//   currentSharePrice.appendChild
+// }
 
 
 
