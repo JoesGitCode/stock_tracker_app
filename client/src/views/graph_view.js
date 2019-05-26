@@ -15,9 +15,10 @@ GraphView.prototype.bindEvents = function(){
 
 GraphView.prototype.render = function(companyInfo){
     const companyName = companyInfo.symbol
-    const sharePrice = companyInfo.historical.map(days => days.date.replace(/-/g, ""))
-    const sharePriceInt = sharePrice.map(date => parseInt(date))
-    console.log(sharePriceInt);
+    // const shareDateNoHyphen = companyInfo.historical.map(days => days.date.replace(/-/g, ""))
+    // const shareDateInt = sharePrice.map(date => parseInt(date))
+    const sharePrice = companyInfo.historical.map(day => day.close)
+    console.log('sharePirce', sharePrice);
     
     const sharePriceArr = sharePrice.map(days => Object.values(days))
     // const shareDate = companyInfo.historical.map(day => day.date)
@@ -25,28 +26,31 @@ GraphView.prototype.render = function(companyInfo){
     // console.log(shareDate);
     
     
-    this.renderGraph(companyName, sharePriceArr, sharePriceInt)
+    this.renderGraph(companyName, sharePrice)
 }
 
-GraphView.prototype.renderGraph = function(companyName, sharePriceArr, sharePriceInt){
+GraphView.prototype.renderGraph = function(companyName, sharePrice){
     
             Highcharts.chart('graph', {
                 chart: {
                     zoomType: 'x'
                 },
                 title: {
-                    text: 'USD to EUR exchange rate over time'
+                    text: `${companyName} Share Price History`
                 },
                 subtitle: {
                     text: document.ontouchstart === undefined ?
                         'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
                 },
                 xAxis: {
-                    categories: sharePriceInt
+                    type: 'datetime',
+                    dateTimeLabelFormats: {
+                        day: '%Y %m %d' 
+                     },
                 },
                 yAxis: {
                     title: {
-                        text: 'Exchange rate'
+                        text: 'Price per Share (USD)'
                     }
                 },
                 legend: {
@@ -81,12 +85,13 @@ GraphView.prototype.renderGraph = function(companyName, sharePriceArr, sharePric
     
                 series: [{
                     type: 'area',
-                    name: 'USD to EUR',
-                    data: [[20140428, 78.0232], [20140429, 77.7918], [20140430, 77.4976]]
+                    name: 'Price per Share in USD',
+                    data: sharePrice,
+                    pointStart: Date.UTC(2014, 04, 28),
+                    pointInterval: 24 * 3600 * 1000 // one day
                 }]
             });
         }
-
 
 
             
