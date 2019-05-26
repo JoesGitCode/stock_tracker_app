@@ -3,7 +3,7 @@ const RequestHelper = require('../helpers/request_helper.js')
 
 const Stock = function (url) {
   this.url = url
-  console.log(this.url);
+  this.request = new RequestHelper('http://localhost:3000/api/stocks')
 };
 
 Stock.prototype.bindEvents = function () {
@@ -34,8 +34,10 @@ Stock.prototype.bindEvents = function () {
 
 
 Stock.prototype.getData = function() {
+
     this.request.get()
       .then((stocks) =>{
+        console.log(stocks);
         PubSub.publish('Stock:data-loaded', stocks);
       })
       .catch(console.error)

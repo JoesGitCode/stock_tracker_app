@@ -15,7 +15,7 @@ StockView.prototype.render = function (companyInfo) {
 
   const companySymbol = this.createSymbol(companyInfo.symbol)
   companyContainerLeft.appendChild(companySymbol)
-
+  console.log(companyInfo.historical.length);
   const displayCompanyClose =`close: ${companyInfo.historical[companyInfo.historical.length -1].close}`
   const companyRevenue = this.createClose(displayCompanyClose)
   companyContainerLeft.appendChild(companyRevenue)
@@ -87,6 +87,11 @@ StockView.prototype.createForm = function (companyInfo){
   currentSharePrice.appendChild(buyShareButton)
   return currentSharePrice
 }
+
+
+
+
+
 
 
 
