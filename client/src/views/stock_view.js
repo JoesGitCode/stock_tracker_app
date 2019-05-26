@@ -28,11 +28,10 @@ StockView.prototype.render = function (companyInfo) {
   const companyVolume = this.createVolume(displayCompanyVolume)
   companyContainerRight.appendChild(companyVolume)
 
-  const currentSharePrice = companyInfo.historical[companyInfo.historical.length -1]
-  const buyShareForm = this.createForm(currentSharePrice)
 
-  // const companyRevenue = this.createRevenue(companyInfo.financials[0].Revenue)
-  // companyContainer.appendChild(companyRevenue)
+  const buyShareForm = this.createForm(companyInfo)
+  companyContainerRight.appendChild(buyShareForm)
+
 };
 
 StockView.prototype.createSymbol = function(textContent) {
@@ -59,10 +58,34 @@ StockView.prototype.createVolume= function (textContent) {
   return volume
 };
 
-StockView.prototype.createForm(companyInfo){
-  const currentShareprice = document.createElement('form')
-  const buy
-  currentSharePrice.appendChild
+StockView.prototype.createForm = function (companyInfo){
+
+  const companyInfoFinances = companyInfo.historical[companyInfo.historical.length -1]
+  const currentSharePrice = document.createElement('form')
+  const inputCompanyName = document.createElement('input')
+  const buyInputPrice = document.createElement('input')
+  const buyInputPriceQauntity = document.createElement('input')
+  const buyShareButton = document.createElement('input')
+
+  inputCompanyName.setAttribute('type', 'text')
+  inputCompanyName.setAttribute('value', companyInfo.symbol)
+  inputCompanyName.setAttribute("hidden", true)
+
+  buyInputPrice.setAttribute('type', 'text')
+  buyInputPrice.setAttribute('value', companyInfoFinances.open)
+  buyInputPrice.setAttribute("hidden", true)
+
+  buyInputPriceQauntity.setAttribute('type', 'number')
+  buyInputPriceQauntity.setAttribute('name', 'quantity')
+
+  buyShareButton.setAttribute('type', 'submit')
+  buyShareButton.setAttribute('value', 'buy')
+
+  currentSharePrice.appendChild(inputCompanyName)
+  currentSharePrice.appendChild(buyInputPrice)
+  currentSharePrice.appendChild(buyInputPriceQauntity)
+  currentSharePrice.appendChild(buyShareButton)
+  return currentSharePrice
 }
 
 
