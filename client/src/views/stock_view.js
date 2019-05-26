@@ -10,20 +10,18 @@ StockView.prototype.render = function (companyInfo) {
   companyContainer.id = 'companySearch'
   this.container.appendChild(companyContainer)
 
-  console.log(companyInfo);
-
   const companySymbol = this.createSymbol(companyInfo.symbol)
   companyContainer.appendChild(companySymbol)
 
-  const companyRevenue = this.createRevenue(companyInfo.financials[0]["Revenue"])
+  const companyRevenue = this.createClose(companyInfo.historical[companyInfo.historical.length -1].close)
   companyContainer.appendChild(companyRevenue)
 
-  const companyGrossProfit = this.createGrossProfit(companyInfo.financials[0]["Revenue Growth"])
+  const companyGrossProfit = this.createOpen(companyInfo.historical[companyInfo.historical.length -1].open)
   companyContainer.appendChild(companyGrossProfit)
 
-  // const companyRevenue = this.createRevenue(companyInfo.financials[0].Revenue)
-  // companyContainer.appendChild(companyRevenue)
-  //
+  const companyVolume = this.createVolume(companyInfo.historical[companyInfo.historical.length -1].volume)
+  companyContainer.appendChild(companyVolume)
+
   // const companyRevenue = this.createRevenue(companyInfo.financials[0].Revenue)
   // companyContainer.appendChild(companyRevenue)
 };
@@ -34,16 +32,22 @@ StockView.prototype.createSymbol = function(textContent) {
   return symbol
 };
 
-StockView.prototype.createRevenue = function (textContent) {
-  const revenue = document.createElement('h4')
-  revenue.textContent = textContent
-  return revenue
+StockView.prototype.createClose = function (textContent) {
+  const close = document.createElement('h4')
+  close.textContent = textContent
+  return close
 };
 
-StockView.prototype.createGrossProfit = function (textContent) {
-  const grossProfit = document.createElement('h4')
-  grossProfit.textContent = textContent
-  return grossProfit
+StockView.prototype.createOpen= function (textContent) {
+  const open = document.createElement('h4')
+  open.textContent = textContent
+  return open
+};
+
+StockView.prototype.createVolume= function (textContent) {
+  const volume = document.createElement('h4')
+  volume.textContent = textContent
+  return volume
 };
 
 

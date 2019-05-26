@@ -6,10 +6,10 @@ const StockSearchView = function (element) {
 
 StockSearchView.prototype.bindEvents = function () {
   this.element.addEventListener('submit', (event) =>{
-    console.log("HELLLLLLOOOOOO");
     event.preventDefault()
+
+    const searchStockDiplayed =  document.querySelector("#stock_search_stock")
     const data = event.target.stockname.value
-    console.log(data);
     PubSub.publish('SearchFormView:ticker-selected', data)
   })
 
