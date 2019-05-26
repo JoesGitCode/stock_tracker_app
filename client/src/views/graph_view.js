@@ -30,68 +30,135 @@ GraphView.prototype.render = function(companyInfo){
 }
 
 GraphView.prototype.renderGraph = function(companyName, sharePrice){
+    Highcharts.stockChart('graph', {
+
+
+        title: {
+            text: `${companyName} Stock Price History (USD)`
+                },
+
+        subtitle: {
+            text: 'Data supplied by financialmodelingprep.com'
+        },
+
+        xAxis: {
+            breaks: [
+            { // Weekends
+                from: Date.UTC(2014, 5, 2),
+                to: Date.UTC(2014, 5, 5),
+                repeat: 7 * 24 * 36e5
+            }]
+        },
+
+        rangeSelector: {
+            buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1M'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1Y'
+            }, {
+                type: 'all',
+                count: 1,
+                text: 'All'
+            }],
+            selected: 1,
+            inputEnabled: false
+        },
+
+        series: [{
+            name: companyName,
+            type: 'area',
+            data: sharePrice,
+            pointStart: Date.UTC(2014, 04, 28),
+            pointInterval: 24 * 3600 * 1000,
+            gapSize: 5,
+            tooltip: {
+                valueDecimals: 2
+            },
+            fillColor: {
+                linearGradient: {
+                    x1: 0,
+                    y1: 0,
+                    x2: 0,
+                    y2: 1
+                },
+                stops: [
+                    [0, Highcharts.getOptions().colors[0]],
+                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                ]
+            },
+            threshold: null
+        }]
+    })
+ }
     
-            Highcharts.chart('graph', {
-                chart: {
-                    zoomType: 'x'
-                },
-                title: {
-                    text: `${companyName} Share Price History`
-                },
-                subtitle: {
-                    text: document.ontouchstart === undefined ?
-                        'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-                },
-                xAxis: {
-                    type: 'datetime',
-                    dateTimeLabelFormats: {
-                        day: '%Y %m %d' 
-                     },
-                },
-                yAxis: {
-                    title: {
-                        text: 'Price per Share (USD)'
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    area: {
-                        fillColor: {
-                            linearGradient: {
-                                x1: 0,
-                                y1: 0,
-                                x2: 0,
-                                y2: 1
-                            },
-                            stops: [
-                                [0, Highcharts.getOptions().colors[0]],
-                                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                            ]
-                        },
-                        marker: {
-                            radius: 2
-                        },
-                        lineWidth: 1,
-                        states: {
-                            hover: {
-                                lineWidth: 1
-                            }
-                        },
-                        threshold: null
-                    }
-                },
+
+
     
-                series: [{
-                    type: 'area',
-                    name: 'Price per Share in USD',
-                    data: sharePrice,
-                    pointStart: Date.UTC(2014, 04, 28),
-                    pointInterval: 24 * 3600 * 1000 // one day
-                }]
-            });
-        }
+        //     Highcharts.chart('graph', {
+        //         chart: {
+        //             zoomType: 'x'
+        //         },
+        //         title: {
+        //             text: `${companyName} Share Price History`
+        //         },
+        //         subtitle: {
+        //             text: document.ontouchstart === undefined ?
+        //                 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+        //         },
+        //         xAxis: {
+        //             type: 'datetime',
+        //             dateTimeLabelFormats: {
+        //                 day: '%Y %m %d' 
+        //              },
+        //         },
+        //         yAxis: {
+        //             title: {
+        //                 text: 'Price per Share (USD)'
+        //             }
+        //         },
+        //         legend: {
+        //             enabled: false
+        //         },
+        //         plotOptions: {
+        //             area: {
+        //                 fillColor: {
+        //                     linearGradient: {
+        //                         x1: 0,
+        //                         y1: 0,
+        //                         x2: 0,
+        //                         y2: 1
+        //                     },
+        //                     stops: [
+        //                         [0, Highcharts.getOptions().colors[0]],
+        //                         [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+        //                     ]
+        //                 },
+        //                 marker: {
+        //                     radius: 2
+        //                 },
+        //                 lineWidth: 1,
+        //                 states: {
+        //                     hover: {
+        //                         lineWidth: 1
+        //                     }
+        //                 },
+        //                 threshold: null
+        //             }
+        //         },
+    
+        //         series: [{
+        //             type: 'area',
+        //             name: 'Price per Share in USD',
+        //             data: sharePrice,
+        //             pointStart: Date.UTC(2014, 04, 28),
+        //             pointInterval: 24 * 3600 * 1000 // one day
+        //         }]
+        //     });
+        // }
 
 
             
