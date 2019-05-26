@@ -16,17 +16,33 @@ Stock.prototype.bindEvents = function () {
     .then((data) => {
       const companyInfo = data
       PubSub.publish("StockModel: Company-realtime-info" , companyInfo )
+
+  PubSub.subscribe('stock_view:shares-bought-published', (event) => {
+    console.log("subscribing to bought data:", event);
+  })
+
     })
   })
+
+  Stock.prototype.getData = function() {
+    this.request.get()
+    .then((stocks) =>{
+      PubSub.publish('Stock:data-loaded', stocks);
+    })
+    .catch(console.error)
+  }
+
+  Stock.prototype.postBoughtShares = function(BuyShareInfo){
+    this.request.post(BuyShareInfo)
+    .then((shares) => {
+      PubSub.publish('Stock:data-loaded', shares)
+    })
+  }
 };
 
 
-Stock.prototype.getData = function() {
-    this.request.get()
-      .then((stocks) =>{
-        PubSub.publish('Stock:data-loaded', stocks);
-      })
-      .catch(console.error)
-}
+
+
+
 
 module.exports = Stock;

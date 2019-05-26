@@ -76,7 +76,7 @@ StockView.prototype.createForm = function (companyInfo){
   inputCompanyName.setAttribute("hidden", true)
 
   buyInputPrice.setAttribute('type', 'text')
-  buyInputPrice.setAttribute('name', 'current-share-price')
+  buyInputPrice.setAttribute('name', 'strike_price')
   buyInputPrice.setAttribute('value', companyInfoFinances.open)
   buyInputPrice.setAttribute("hidden", true)
 
@@ -91,16 +91,25 @@ StockView.prototype.createForm = function (companyInfo){
   currentSharePrice.appendChild(buyInputPriceQauntity)
   currentSharePrice.appendChild(buyShareButton)
   return currentSharePrice
-}
+};
 
-StockView.prototype.buyStocks = function (){
+StockView.prototype.handleSubmit = function (){
   const saveStockFormContainer = document.querySelector('#buy-share-form');
   saveStockFormContainer.addEventListener('submit', (event)=>{
     event.preventDefault()
-    const data = event.target
-    PubSub.publish('stock_view: shares-bought-published', data )
+    const data = this.createPurchase(event.target)
+    PubSub.publish('stock_view:shares-bought-published', data )
   })
-}
+};
+
+
+StockView.prototype.createPurchase = function (form) {
+  const newPurchase = {
+    name: form.company.value,
+    quantity: form.quantity.value,
+    strike_price:form.strike_price.value
+  }
+};
 
 
 
