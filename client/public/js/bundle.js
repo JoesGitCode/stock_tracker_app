@@ -108,14 +108,25 @@ eval("const PubSub = {\n publish: function (channel, payload) {\n   console.log(
 
 /***/ }),
 
+/***/ "./client/src/helpers/request_helper.js":
+/*!**********************************************!*\
+  !*** ./client/src/helpers/request_helper.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("const RequestHelper = function(url) {\n  this.url = url\n};\n\nRequestHelper.prototype.get = function () {\n  return fetch(this.url)\n    .then((response) => response.json());\n};\n\n\nmodule.exports = RequestHelper\n\n\n//# sourceURL=webpack:///./client/src/helpers/request_helper.js?");
+
+/***/ }),
+
 /***/ "./client/src/models/stocks.js":
 /*!*************************************!*\
   !*** ./client/src/models/stocks.js ***!
   \*************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("throw new Error(\"Module parse failed: Unexpected token (31:3)\\nYou may need an appropriate loader to handle this file type.\\n|     PubSub.publish(\\\"StockModel: Company-realtime-info\\\" , companyInfo )\\n|   })\\n> >>>>>>> 596e2dc79a9b8620e6c416852c0fad730dd5bd86\\n|   })\\n| };\");\n\n//# sourceURL=webpack:///./client/src/models/stocks.js?");
+eval("const PubSub = __webpack_require__ (/*! ../helpers/pub_sub.js */ \"./client/src/helpers/pub_sub.js\")\nconst RequestHelper = __webpack_require__(/*! ../helpers/request_helper.js */ \"./client/src/helpers/request_helper.js\")\n\nconst Stock = function (url) {\n  this.url = url\n  console.log(this.url);\n};\n\nStock.prototype.bindEvents = function () {\n  // console.log('subscribed to ticker selected');\n  PubSub.subscribe('SearchFormView:ticker-selected', (event) => {\n  const stockTickerName = event.detail.toUpperCase()\n  console.log(\"i am the stock ticker\", stockTickerName);\n  const companyInfoFromApi = this.url\n  const json = '?datatype=json'\n\n  const finalUrl = companyInfoFromApi + stockTickerName + json\n  console.log(finalUrl);\n  // console.log(companyInfoFromApi);\n  PubSub.publish(\"StockModel: Company-realtime-info\" , finalUrl )\n\n  const request = new RequestHelper(companyInfoFromApi + stockTickerName)\n  console.log(request);\n  request.get()\n  .then((data) => {\n    const companyInfo = data\n    console.log('compnay info >??????', companyInfo);\n\n    PubSub.publish(\"StockModel: Company-realtime-info\" , companyInfo )\n  })\n\n  })\n};\n\n\nmodule.exports = Stock;\n\n\n//# sourceURL=webpack:///./client/src/models/stocks.js?");
 
 /***/ }),
 

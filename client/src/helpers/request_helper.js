@@ -6,3 +6,6 @@ RequestHelper.prototype.get = function () {
   return fetch(this.url)
     .then((response) => response.json());
 };
+
+
+module.exports = RequestHelper

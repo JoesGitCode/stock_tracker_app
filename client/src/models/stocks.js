@@ -28,7 +28,7 @@ Stock.prototype.bindEvents = function () {
 
     PubSub.publish("StockModel: Company-realtime-info" , companyInfo )
   })
->>>>>>> 596e2dc79a9b8620e6c416852c0fad730dd5bd86
+
   })
 };
 
