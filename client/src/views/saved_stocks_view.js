@@ -6,32 +6,29 @@ const SavedStocksView = function(container) {
 
 SavedStocksView.prototype.render = function(stocks) {
 
-  const stockContainer = document.createElement('div')
+  const stockContainer = document.createElement('details')
   stockContainer.id = 'stock';
   this.container.appendChild(stockContainer)
 
   const companyName = this.createHeading("Name: " + stocks.name)
-
   stockContainer.appendChild(companyName)
 
-  const companyPrice = this.createHeading("Price: " + stocks.strike_price)
-  stockContainer.appendChild(companyPrice)
+  const totalValue = this.createHeading("Total Value: " + stocks.strike_price * stocks.quantity)
+  stockContainer.appendChild(totalValue)
 
-  const companyStrikePrice = this.createHeading("Quantity: " + stocks.quantity)
-  stockContainer.appendChild(companyStrikePrice)
+  const summary = document.createElement('summary')
+  summary.textContent = stocks.name + " " + stocks.strike_price
+  stockContainer.appendChild(summary)
 
-
+  const graph = document.createElement('div')
+  graph.id = "graph-" + stocks.name
+  stockContainer.appendChild(graph)
 }
 
 SavedStocksView.prototype.createHeading = function(textContent){
   const heading = document.createElement('p');
   heading.textContent = textContent;
   return heading;
-
-
-
-
-
 }
 
 module.exports = SavedStocksView;
