@@ -24,13 +24,14 @@ GraphView.prototype.render = function(companyInfo){
         combinedArray.push(shareDates[index])
         combinedArray.push(sharePrices[index])
         combinedData.push(combinedArray)
-    }); 
-
-    this.renderGraph(companyName, combinedData)
+    });
+    // PubSub.publish('GraphView:combined-data', combinedData)
+    element = "graph"
+    this.renderGraph(element, companyName, combinedData)
 }
 
-GraphView.prototype.renderGraph = function(companyName, combinedData){
-    Highcharts.stockChart('graph', {
+GraphView.prototype.renderGraph = function(elementid, companyName, combinedData){
+    Highcharts.stockChart(`${elementid}`, {
 
 
         title: {
@@ -84,7 +85,7 @@ GraphView.prototype.renderGraph = function(companyName, combinedData){
         }]
     })
  }
-    
+
 // GraphView.prototype.render = function(companyInfo){
 //     console.log(companyInfo.financials[0].Revenue);
 //     console.log(companyInfo.symbol);

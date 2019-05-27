@@ -25,6 +25,18 @@ Stock.prototype.bindEvents = function () {
     })
   })
 
+  //LOOK AT THIS ONE BUDGIE
+  PubSub.subscribe('SearchFormView:ticker-clicked', (event) => {
+    const stockTickerName = event.detail.toUpperCase()
+    const requestHistorical = new RequestHelper(this.urlHistorical + stockTickerName)
+    requestHistorical.get()
+    .then((data) => {
+      const companyInfo = data
+      PubSub.publish("StockModel: Company-historical-info" , companyInfo );
+
+    })
+  })
+
   PubSub.subscribe('stock_view:shares-bought-published', (event) => {
 
     console.log(event.detail);
