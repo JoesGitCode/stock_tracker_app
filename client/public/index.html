@@ -10,15 +10,30 @@
   <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/index_structure.css">
+  <link rel="stylesheet" href="css/display.css">
 </head>
 <body>
+
+  <div>
+
+    <div id="dashboard" >
+    <input type="checkbox" class="toggler" id="dashboardToggle">
+    <input type="checkbox" class="toggler" id="searchToggle">
+    </div>
+
+    <div id="search">
+    <h4> Search</h4>
+    </div>
+
+  </div>
+
 
   <div>
     <div id="roi">
     </div>
   </div>
 
-  <div class ="form_setup">
+  <div class ="form_setup visibility" id="stock_search">
     <h1>Find Stock Information</h1>
     <h3>Enter company stock name and find the latest information</h3>
     <form id="input_stock_pick">
@@ -32,22 +47,22 @@
   </div>
 
 
-  <div class = "search-box" id="stock_search_stock">
-   
- 
+  <div class = "search-box"  id="stock_search_stock">
+
+
   </div>
   <div id="graph">
     </div>
 
 
   <h1> stattom oakmond </h1>
-  <div id="held_stocks">
+  <div id="held_stocks" >
 
   </div>
 
-    
-          <div id="stockInfo">
-          </div>
+
+  <div id="stockInfo">
+  </div>
 
 
 
