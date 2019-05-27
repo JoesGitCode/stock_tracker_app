@@ -6,7 +6,7 @@ const GraphView = function(container){
 
 
 GraphView.prototype.bindEvents = function(){
-    PubSub.subscribe("StockModel: Company-realtime-info", (event) => {
+    PubSub.subscribe("StockModel: Company-historical-info", (event) => {
         console.log('company info', event.detail);
         const companyInfo = event.detail;
         this.render(companyInfo)
@@ -19,21 +19,21 @@ GraphView.prototype.render = function(companyInfo){
     console.log(shareDateNoHyphen)
     // const shareDateInt = shareDateNoHyphen.map(date => parseInt(date))
     // console.log('should be the int of the date', shareDateInt);
-    
+
     // const shareDateUTC = shareDateNoHyphen.map(date => [Date.UTC(date)])
     // console.log('this is the utc dates', shareDateUTC);
     // const firstDay = shareDateUTC[0]
     // console.log(firstDay);
-    
+
     const sharePrice = companyInfo.historical.map(day => day.close)
     console.log('sharePirce', sharePrice);
-    
+
     const sharePriceArr = sharePrice.map(days => [Object.values(days)])
     // const shareDate = companyInfo.historical.map(day => day.date)
     console.log('array of days?', sharePriceArr);
     // console.log(shareDate);
-    
-    
+
+
     this.renderGraph(companyName, sharePrice, shareDateNoHyphen)
 }
 
@@ -102,10 +102,10 @@ GraphView.prototype.renderGraph = function(companyName, sharePrice, shareDateNoH
         }]
     })
  }
-    
 
 
-    
+
+
         //     Highcharts.chart('graph', {
         //         chart: {
         //             zoomType: 'x'
@@ -120,7 +120,7 @@ GraphView.prototype.renderGraph = function(companyName, sharePrice, shareDateNoH
         //         xAxis: {
         //             type: 'datetime',
         //             dateTimeLabelFormats: {
-        //                 day: '%Y %m %d' 
+        //                 day: '%Y %m %d'
         //              },
         //         },
         //         yAxis: {
@@ -157,7 +157,7 @@ GraphView.prototype.renderGraph = function(companyName, sharePrice, shareDateNoH
         //                 threshold: null
         //             }
         //         },
-    
+
         //         series: [{
         //             type: 'area',
         //             name: 'Price per Share in USD',
@@ -169,7 +169,7 @@ GraphView.prototype.renderGraph = function(companyName, sharePrice, shareDateNoH
         // }
 
 
-            
+
 
 // GraphView.prototype.render = function(companyInfo){
 //     console.log(companyInfo.financials[0].Revenue);
@@ -184,17 +184,17 @@ GraphView.prototype.renderGraph = function(companyName, sharePrice, shareDateNoH
 
 // GraphView.prototype.renderGraph = function(companyName, revenue){
 //     console.log('renderGraph data', revenue);
-    
+
 //     Highcharts.chart('graph', {
 
 //         title: {
 //             text: `${companyName} share price, 2010-2019`
 //         },
-        
+
 //         subtitle: {
 //             text: 'Source: financialmodelingprep.com'
 //         },
-        
+
 //         yAxis: {
 //             title: {
 //                 text: 'US Dollars'
@@ -205,7 +205,7 @@ GraphView.prototype.renderGraph = function(companyName, sharePrice, shareDateNoH
 //             align: 'right',
 //             verticalAlign: 'middle'
 //         },
-        
+
 //         plotOptions: {
 //             series: {
 //                 label: {
@@ -214,13 +214,13 @@ GraphView.prototype.renderGraph = function(companyName, sharePrice, shareDateNoH
 //                 pointStart: 2010
 //             }
 //         },
-        
+
 //         series: [{
 //             name: 'Revenue',
 //             data: revenue
-            
+
 //         }],
-        
+
 //         responsive: {
 //             rules: [{
 //                 condition: {
@@ -235,7 +235,7 @@ GraphView.prototype.renderGraph = function(companyName, sharePrice, shareDateNoH
 //                 }
 //             }]
 //         }
-        
+
 //         });
 // }
 
