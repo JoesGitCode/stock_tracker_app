@@ -24,8 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const graphView = new GraphView(graphContainer)
   graphView.bindEvents()
 
-
-  const stockModel = new StockModel('https://financialmodelingprep.com/api/v3/historical-price-full/')
+  const realTimeStockPrice = 'https://financialmodelingprep.com/api/company/real-time-price/'
+  const historicalStockPrice = 'https://financialmodelingprep.com/api/v3/historical-price-full/'
+  const stockModel = new StockModel(realTimeStockPrice, historicalStockPrice)
   stockModel.bindEvents()
   stockModel.getData()
 
