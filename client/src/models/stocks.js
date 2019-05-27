@@ -26,6 +26,13 @@ Stock.prototype.bindEvents = function () {
     console.log(event.detail);
     this.postBoughtStock(event.detail)
   })
+
+  // DELETE
+  PubSub.subscribe('stock_view:stock-delete-clicked', (event) =>{
+    console.log(event);
+    this.deleteStock(event.detail)
+  })
+
 };
 
 
@@ -45,6 +52,13 @@ Stock.prototype.postBoughtStock = function(BuyShareInfo){
   })
 }
 
+
+Stock.prototype.deleteStock = function(stockId) {
+    this.request.delete(stockId)
+      .then((stocks) =>{
+        PubSub.publish('Stock:data-loaded', stocks)
+      })
+}
 
 
 
