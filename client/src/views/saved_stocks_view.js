@@ -10,13 +10,14 @@ SavedStocksView.prototype.render = function(stocks) {
   stockContainer.id = 'stock';
   this.container.appendChild(stockContainer)
 
-  const companyName = this.createHeading(stocks.name)
+  const companyName = this.createHeading("Name: " + stocks.name)
+
   stockContainer.appendChild(companyName)
 
-  const companyPrice = this.createHeading(stocks.strike_price)
+  const companyPrice = this.createHeading("Price: " + stocks.strike_price)
   stockContainer.appendChild(companyPrice)
 
-  const companyStrikePrice = this.createHeading(stocks.quantity)
+  const companyStrikePrice = this.createHeading("Quantity: " + stocks.quantity)
   stockContainer.appendChild(companyStrikePrice)
 
 
