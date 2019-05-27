@@ -10,16 +10,13 @@ const Stock = function (urlReal, urlHistorical) {
   this.request = new RequestHelper('http://localhost:3000/api/stocks')
 };
 
-const companyInfoFromApi = this.urlHistorical
-const companyRealTimeApi = this.urlReal
-
 Stock.prototype.bindEvents = function () {
 
 
 
   PubSub.subscribe('SearchFormView:ticker-selected', (event) => {
     const stockTickerName = event.detail.toUpperCase()
-    const requestHistorical = new RequestHelper(companyInfoFromApi + stockTickerName)
+    const requestHistorical = new RequestHelper(this.urlHistorical + stockTickerName)
     requestHistorical.get()
     .then((data) => {
       const companyInfo = data
@@ -33,7 +30,6 @@ Stock.prototype.bindEvents = function () {
     console.log(event.detail);
     this.postBoughtStock(event.detail)
   })
-<<<<<<< HEAD
 
   // DELETE
   PubSub.subscribe('stock_view:stock-delete-clicked', (event) =>{
@@ -42,8 +38,7 @@ Stock.prototype.bindEvents = function () {
   })
 
 };
-=======
-}
+
 
 Stock.prototype.getRealTime = function() {
 
@@ -73,7 +68,6 @@ Stock.prototype.getRealTime = function() {
 
 
 
->>>>>>> 90fd60afc4a783a85b0d231a23cccbf20b38eed5
 
 
 Stock.prototype.getData = function() {
