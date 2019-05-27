@@ -15,21 +15,29 @@ GraphView.prototype.bindEvents = function(){
 
 GraphView.prototype.render = function(companyInfo){
     const companyName = companyInfo.symbol
-    // const shareDateNoHyphen = companyInfo.historical.map(days => days.date.replace(/-/g, ""))
-    // const shareDateInt = sharePrice.map(date => parseInt(date))
+    const shareDateNoHyphen = companyInfo.historical.map(days => Date.parse(days.date))
+    console.log(shareDateNoHyphen)
+    // const shareDateInt = shareDateNoHyphen.map(date => parseInt(date))
+    // console.log('should be the int of the date', shareDateInt);
+    
+    // const shareDateUTC = shareDateNoHyphen.map(date => [Date.UTC(date)])
+    // console.log('this is the utc dates', shareDateUTC);
+    // const firstDay = shareDateUTC[0]
+    // console.log(firstDay);
+    
     const sharePrice = companyInfo.historical.map(day => day.close)
     console.log('sharePirce', sharePrice);
     
-    const sharePriceArr = sharePrice.map(days => Object.values(days))
+    const sharePriceArr = sharePrice.map(days => [Object.values(days)])
     // const shareDate = companyInfo.historical.map(day => day.date)
     console.log('array of days?', sharePriceArr);
     // console.log(shareDate);
     
     
-    this.renderGraph(companyName, sharePrice)
+    this.renderGraph(companyName, sharePrice, shareDateNoHyphen)
 }
 
-GraphView.prototype.renderGraph = function(companyName, sharePrice){
+GraphView.prototype.renderGraph = function(companyName, sharePrice, shareDateNoHyphen){
     Highcharts.stockChart('graph', {
 
 
@@ -42,12 +50,12 @@ GraphView.prototype.renderGraph = function(companyName, sharePrice){
         },
 
         xAxis: {
-            breaks: [
-            { // Weekends
-                from: Date.UTC(2014, 5, 2),
-                to: Date.UTC(2014, 5, 5),
+            data: shareDateNoHyphen,
+            breaks: [{ // Nights
+                from: Date.UTC(2014, 5, 30),
+                to: Date.UTC(2014, 6, 2),
                 repeat: 7 * 24 * 36e5
-            }]
+            }],
         },
 
         rangeSelector: {
@@ -72,9 +80,9 @@ GraphView.prototype.renderGraph = function(companyName, sharePrice){
             name: companyName,
             type: 'area',
             data: sharePrice,
-            pointStart: Date.UTC(2014, 04, 28),
+            pointStart: Date.UTC(2014, 4, 28), // firstDay[0],
             pointInterval: 24 * 3600 * 1000,
-            gapSize: 5,
+            // gapSize: 5,
             tooltip: {
                 valueDecimals: 2
             },
