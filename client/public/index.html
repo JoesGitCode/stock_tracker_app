@@ -9,26 +9,32 @@
   <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/index_structure.css">
 </head>
 <body>
+
   <div class ="form_setup">
     <h1>Find Stock Information</h1>
     <h3>Enter company stock name and find the latest information</h3>
     <form id="input_stock_pick">
-    <div class = "input_form_div">
-      <input type="text" id="stockname" placeholder="Enter location visited" >
-    </div>
-    <div class = "input_form_div">
-      <input class="submit" type="submit" value="Submit"/>
-    </div>
-  </form>
+      <div class = "input_form_div">
+        <input type="text" id="stockname" placeholder="Enter location visited" >
+      </div>
+      <div class = "input_form_div">
+        <input class="submit" type="submit" value="Submit"/>
+      </div>
+    </form>
   </div>
+
+
+  <div class = "search-box" id="stock_search_stock">
+  </div>
+
+
   <h1> stattom oakmond </h1>
   <div id="held_stocks">
-    <ul id="held_stocks_list_container">
-      <li class="li"> Hello </li>
-    </ul>
-  <div>
+
+  </div>
 
   <div id="stockInfo">
   </div>
@@ -38,5 +44,6 @@
     
 
   </div>
+
 </body>
 </html>
