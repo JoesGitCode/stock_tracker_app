@@ -120,4 +120,6 @@ StockView.prototype.createPurchase = function (form) {
 
 
 
+
+
 module.exports = StockView;

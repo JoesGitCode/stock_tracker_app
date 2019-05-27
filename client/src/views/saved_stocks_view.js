@@ -6,6 +6,7 @@ const SavedStocksView = function(container) {
 
 SavedStocksView.prototype.render = function(stocks) {
 
+  console.log(stocks);
   const stockContainer = document.createElement('div')
   stockContainer.id = 'stock';
   this.container.appendChild(stockContainer)
@@ -20,6 +21,9 @@ SavedStocksView.prototype.render = function(stocks) {
   const companyStrikePrice = this.createHeading("Quantity: " + stocks.quantity)
   stockContainer.appendChild(companyStrikePrice)
 
+  const deleteButton = this.createDeleteButton(stocks._id);
+  console.log(stocks._id);
+  stockContainer.appendChild(deleteButton);
 
 }
 
@@ -28,10 +32,21 @@ SavedStocksView.prototype.createHeading = function(textContent){
   heading.textContent = textContent;
   return heading;
 
+}
+
+SavedStocksView.prototype.createDeleteButton = function(stockId) {
+    const button = document.createElement('button')
+    button.classList.add('remove-button')
+    button.value = stockId;
+    console.log(stockId);
 
 
-
-
+  button.addEventListener('click', (event) =>{
+    // console.log(event);
+    PubSub.publish('stock_view:stock-delete-clicked', event.target.value)
+    console.log(event.target);
+  })
+  return button;
 }
 
 module.exports = SavedStocksView;

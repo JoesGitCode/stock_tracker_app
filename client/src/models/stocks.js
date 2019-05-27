@@ -33,6 +33,16 @@ Stock.prototype.bindEvents = function () {
     console.log(event.detail);
     this.postBoughtStock(event.detail)
   })
+<<<<<<< HEAD
+
+  // DELETE
+  PubSub.subscribe('stock_view:stock-delete-clicked', (event) =>{
+    console.log(event);
+    this.deleteStock(event.detail)
+  })
+
+};
+=======
 }
 
 Stock.prototype.getRealTime = function() {
@@ -63,6 +73,7 @@ Stock.prototype.getRealTime = function() {
 
 
 
+>>>>>>> 90fd60afc4a783a85b0d231a23cccbf20b38eed5
 
 
 Stock.prototype.getData = function() {
@@ -81,6 +92,13 @@ Stock.prototype.postBoughtStock = function(BuyShareInfo){
   })
 }
 
+
+Stock.prototype.deleteStock = function(stockId) {
+    this.request.delete(stockId)
+      .then((stocks) =>{
+        PubSub.publish('Stock:data-loaded', stocks)
+      })
+}
 
 
 
