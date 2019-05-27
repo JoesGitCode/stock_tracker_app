@@ -10,16 +10,25 @@ SavedStocksView.prototype.render = function(stocks) {
   stockContainer.id = 'stock';
   this.container.appendChild(stockContainer)
 
-  const companyName = this.createHeading(stocks.name)
+  const companyName = this.createHeading("Name: " + stocks.name)
+
   stockContainer.appendChild(companyName)
+
+  const companyPrice = this.createHeading("Price: " + stocks.strike_price)
+  stockContainer.appendChild(companyPrice)
+
+  const companyStrikePrice = this.createHeading("Quantity: " + stocks.quantity)
+  stockContainer.appendChild(companyStrikePrice)
 
 
 }
 
 SavedStocksView.prototype.createHeading = function(textContent){
-  const heading = document.createElement('h1');
+  const heading = document.createElement('p');
   heading.textContent = textContent;
   return heading;
+
+
 
 
 

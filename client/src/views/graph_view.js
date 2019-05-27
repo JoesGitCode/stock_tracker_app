@@ -5,7 +5,7 @@ const GraphView = function(container){
 }
 
 GraphView.prototype.bindEvents = function(){
-    PubSub.subscribe("StockModel: Company-realtime-info", (event) => {
+    PubSub.subscribe("StockModel: Company-historical-info", (event) => {
         console.log('company info', event.detail);
         const companyInfo = event.detail;
         this.render(companyInfo)
@@ -98,17 +98,17 @@ GraphView.prototype.renderGraph = function(companyName, combinedData){
 
 // GraphView.prototype.renderGraph = function(companyName, revenue){
 //     console.log('renderGraph data', revenue);
-    
+
 //     Highcharts.chart('graph', {
 
 //         title: {
 //             text: `${companyName} share price, 2010-2019`
 //         },
-        
+
 //         subtitle: {
 //             text: 'Source: financialmodelingprep.com'
 //         },
-        
+
 //         yAxis: {
 //             title: {
 //                 text: 'US Dollars'
@@ -119,7 +119,7 @@ GraphView.prototype.renderGraph = function(companyName, combinedData){
 //             align: 'right',
 //             verticalAlign: 'middle'
 //         },
-        
+
 //         plotOptions: {
 //             series: {
 //                 label: {
@@ -128,13 +128,13 @@ GraphView.prototype.renderGraph = function(companyName, combinedData){
 //                 pointStart: 2010
 //             }
 //         },
-        
+
 //         series: [{
 //             name: 'Revenue',
 //             data: revenue
-            
+
 //         }],
-        
+
 //         responsive: {
 //             rules: [{
 //                 condition: {
@@ -149,7 +149,7 @@ GraphView.prototype.renderGraph = function(companyName, combinedData){
 //                 }
 //             }]
 //         }
-        
+
 //         });
 // }
 
