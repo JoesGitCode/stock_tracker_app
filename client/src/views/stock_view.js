@@ -122,6 +122,7 @@ StockView.prototype.handleSubmit = function (){
   const saveStockFormContainer = document.querySelector('#buy-share-form');
   saveStockFormContainer.addEventListener('submit', (event)=>{
     event.preventDefault()
+    this.container.innerHTML = ""
     const data = this.createPurchase(event.target)
     PubSub.publish('stock_view:shares-bought-published', data )
   })

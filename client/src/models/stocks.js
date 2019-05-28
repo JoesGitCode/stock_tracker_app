@@ -10,9 +10,6 @@ const Stock = function (urlReal, urlHistorical) {
   this.request = new RequestHelper('http://localhost:3000/api/stocks')
 };
 
-const companyInfoFromApi = this.urlHistorical
-const companyRealTimeApi = this.urlReal
-
 Stock.prototype.bindEvents = function () {
 
 
@@ -44,7 +41,6 @@ Stock.prototype.bindEvents = function () {
 
 
 };
-
 
 
 Stock.prototype.getRealTime = function() {

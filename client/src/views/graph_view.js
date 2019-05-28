@@ -4,7 +4,6 @@ const GraphView = function(container){
     this.container = container
 }
 
-
 GraphView.prototype.bindEvents = function(){
     PubSub.subscribe("StockModel: Company-historical-info", (event) => {
         console.log('company info', event.detail);
@@ -15,29 +14,22 @@ GraphView.prototype.bindEvents = function(){
 
 GraphView.prototype.render = function(companyInfo){
     const companyName = companyInfo.symbol
-    const shareDateNoHyphen = companyInfo.historical.map(days => Date.parse(days.date))
-    console.log(shareDateNoHyphen)
-    // const shareDateInt = shareDateNoHyphen.map(date => parseInt(date))
-    // console.log('should be the int of the date', shareDateInt);
+    const shareDates = companyInfo.historical.map(days => Date.parse(days.date))
+    const sharePrices = companyInfo.historical.map(day => day.close)
 
-    // const shareDateUTC = shareDateNoHyphen.map(date => [Date.UTC(date)])
-    // console.log('this is the utc dates', shareDateUTC);
-    // const firstDay = shareDateUTC[0]
-    // console.log(firstDay);
+    const combinedData = []
 
-    const sharePrice = companyInfo.historical.map(day => day.close)
-    console.log('sharePirce', sharePrice);
+    shareDates.forEach((element, index) => {
+        const combinedArray = []
+        combinedArray.push(shareDates[index])
+        combinedArray.push(sharePrices[index])
+        combinedData.push(combinedArray)
+    }); 
 
-    const sharePriceArr = sharePrice.map(days => [Object.values(days)])
-    // const shareDate = companyInfo.historical.map(day => day.date)
-    console.log('array of days?', sharePriceArr);
-    // console.log(shareDate);
-
-
-    this.renderGraph(companyName, sharePrice, shareDateNoHyphen)
+    this.renderGraph(companyName, combinedData)
 }
 
-GraphView.prototype.renderGraph = function(companyName, sharePrice, shareDateNoHyphen){
+GraphView.prototype.renderGraph = function(companyName, combinedData){
     Highcharts.stockChart('graph', {
 
 
@@ -47,15 +39,6 @@ GraphView.prototype.renderGraph = function(companyName, sharePrice, shareDateNoH
 
         subtitle: {
             text: 'Data supplied by financialmodelingprep.com'
-        },
-
-        xAxis: {
-            data: shareDateNoHyphen,
-            breaks: [{ // Nights
-                from: Date.UTC(2014, 5, 30),
-                to: Date.UTC(2014, 6, 2),
-                repeat: 7 * 24 * 36e5
-            }],
         },
 
         rangeSelector: {
@@ -79,10 +62,9 @@ GraphView.prototype.renderGraph = function(companyName, sharePrice, shareDateNoH
         series: [{
             name: companyName,
             type: 'area',
-            data: sharePrice,
-            pointStart: Date.UTC(2014, 4, 28), // firstDay[0],
+            data: combinedData,
             pointInterval: 24 * 3600 * 1000,
-            // gapSize: 5,
+            gapSize: 5,
             tooltip: {
                 valueDecimals: 2
             },
@@ -102,75 +84,7 @@ GraphView.prototype.renderGraph = function(companyName, sharePrice, shareDateNoH
         }]
     })
  }
-
-
-
-
-        //     Highcharts.chart('graph', {
-        //         chart: {
-        //             zoomType: 'x'
-        //         },
-        //         title: {
-        //             text: `${companyName} Share Price History`
-        //         },
-        //         subtitle: {
-        //             text: document.ontouchstart === undefined ?
-        //                 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-        //         },
-        //         xAxis: {
-        //             type: 'datetime',
-        //             dateTimeLabelFormats: {
-        //                 day: '%Y %m %d'
-        //              },
-        //         },
-        //         yAxis: {
-        //             title: {
-        //                 text: 'Price per Share (USD)'
-        //             }
-        //         },
-        //         legend: {
-        //             enabled: false
-        //         },
-        //         plotOptions: {
-        //             area: {
-        //                 fillColor: {
-        //                     linearGradient: {
-        //                         x1: 0,
-        //                         y1: 0,
-        //                         x2: 0,
-        //                         y2: 1
-        //                     },
-        //                     stops: [
-        //                         [0, Highcharts.getOptions().colors[0]],
-        //                         [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-        //                     ]
-        //                 },
-        //                 marker: {
-        //                     radius: 2
-        //                 },
-        //                 lineWidth: 1,
-        //                 states: {
-        //                     hover: {
-        //                         lineWidth: 1
-        //                     }
-        //                 },
-        //                 threshold: null
-        //             }
-        //         },
-
-        //         series: [{
-        //             type: 'area',
-        //             name: 'Price per Share in USD',
-        //             data: sharePrice,
-        //             pointStart: Date.UTC(2014, 04, 28),
-        //             pointInterval: 24 * 3600 * 1000 // one day
-        //         }]
-        //     });
-        // }
-
-
-
-
+    
 // GraphView.prototype.render = function(companyInfo){
 //     console.log(companyInfo.financials[0].Revenue);
 //     console.log(companyInfo.symbol);

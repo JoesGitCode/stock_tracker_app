@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const stockGridView = new StockGridView(container1, container2)
   stockGridView.bindEvents()
 
-  const graphContainer = document.querySelector('#graph')
+  const graphContainer = document.querySelector('div#graph')
   const graphView = new GraphView(graphContainer)
   graphView.bindEvents()
 
