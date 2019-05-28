@@ -26,7 +26,6 @@ PageDisplay.prototype.bindEvents = function () {
     searchPage.classList.add('visibility')
   })
 
-
 }
 
 
