@@ -2,6 +2,8 @@ const PubSub = require('../helpers/pub_sub')
 
 const GraphView = function(container){
     this.container = container
+    console.log('contianer', this.container.id);
+    
 }
 
 GraphView.prototype.bindEvents = function(){
@@ -30,7 +32,7 @@ GraphView.prototype.render = function(companyInfo){
 }
 
 GraphView.prototype.renderGraph = function(companyName, combinedData){
-    Highcharts.stockChart('graph', {
+    Highcharts.stockChart(this.container.id.toString(), {
 
 
         title: {
@@ -81,7 +83,9 @@ GraphView.prototype.renderGraph = function(companyName, combinedData){
                 ]
             },
             threshold: null
-        }]
+        }],
+
+        // chart.styledMode: true;
     })
  }
     

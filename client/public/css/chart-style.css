@@ -1,0 +1,16 @@
+@import 'https://code.highcharts.com/css/highcharts.css';
+
+
+#graph {
+	height: 400px;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.highcharts-background {
+    fill: #343435;
+  }
+
+  .highcharts-grid {
+      fill: #223;
+  }

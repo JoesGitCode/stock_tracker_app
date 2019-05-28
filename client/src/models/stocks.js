@@ -33,7 +33,6 @@ Stock.prototype.bindEvents = function () {
     console.log(event.detail);
     this.postBoughtStock(event.detail)
   })
-<<<<<<< HEAD
 
   // DELETE
   PubSub.subscribe('stock_view:stock-delete-clicked', (event) =>{
@@ -42,7 +41,6 @@ Stock.prototype.bindEvents = function () {
   })
 
 };
-=======
 }
 
 Stock.prototype.getRealTime = function() {
@@ -73,7 +71,6 @@ Stock.prototype.getRealTime = function() {
 
 
 
->>>>>>> 90fd60afc4a783a85b0d231a23cccbf20b38eed5
 
 
 Stock.prototype.getData = function() {
