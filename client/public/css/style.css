@@ -1,16 +1,19 @@
 
 #stock{
-
   padding: 10px;
   border: 5px solid #e0e0e0;
+}
 
+.portfolio {
+  display:flex;
 }
 
 #held_stocks{
-
   margin: 0 auto ;
-  width:100%;
+  width:25%;
+}
 
-
-
+#graph {
+  margin: 0 auto ;
+  width: 75%;
 }

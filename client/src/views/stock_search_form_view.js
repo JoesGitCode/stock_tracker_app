@@ -12,7 +12,7 @@ StockSearchView.prototype.bindEvents = function () {
     const searchStockBox =  document.querySelector("#stockname")
     const data = event.target.stockname.value
     PubSub.publish('SearchFormView:ticker-selected', data)
-    
+
   })
 
 };

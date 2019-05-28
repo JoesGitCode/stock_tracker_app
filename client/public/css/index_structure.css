@@ -6,10 +6,6 @@ body{
   width:100%;
 }
 
-div{
-  border:2px solid black;
-}
-
 
 .li{
   border: 5px solid black;
@@ -24,7 +20,10 @@ div{
   border:2px solid black;
 }
 
+#held_stocks{
+  border: 2px solid black;
+}
 
-#stock{
+.stock{
   border:2px solid black;
 }
