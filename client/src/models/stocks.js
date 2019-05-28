@@ -32,7 +32,7 @@ Stock.prototype.bindEvents = function () {
     requestHistorical.get()
     .then((data) => {
       const companyInfo = data
-      PubSub.publish("StockModel: Company-historical-info" , companyInfo );
+      PubSub.publish("StockModel: Company-historical-info-small" , companyInfo );
 
     })
   })

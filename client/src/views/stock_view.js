@@ -10,7 +10,7 @@ StockView.prototype.render = function (companyInfo) {
   const companyContainerLeft = document.createElement('div');
   const companyContainerRight = document.createElement('div');
   companyContainerLeft.id = 'companySearchLeft'
-  companyContainerLeft.id = 'companySearchRight'
+  companyContainerRight.id = 'companySearchRight'
   this.container.appendChild(companyContainerLeft)
   this.container.appendChild(companyContainerRight)
 

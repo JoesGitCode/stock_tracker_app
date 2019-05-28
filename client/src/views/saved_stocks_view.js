@@ -23,7 +23,7 @@ SavedStocksView.prototype.render = function(stocks) {
 
 
   const deleteButton = this.createDeleteButton(stocks._id);
-  console.log(stocks._id);
+  // console.log(stocks._id);
   stockContainer.appendChild(deleteButton);
 
   const summary = document.createElement('summary')
@@ -35,34 +35,36 @@ SavedStocksView.prototype.render = function(stocks) {
   })
   stockContainer.appendChild(summary)
 
-  const graphdiv = document.createElement('div')
-  graphdiv.id = "graph-" + stocks.name
-  console.log(graphdiv.id);
-  stockContainer.appendChild(graphdiv)
-
-  // const smallGraph = new GraphView(graphdiv.id)
-  // smallGraph.bindEvents()
-  // stockContainer.appendChild(smallGraph)
-
+  const smallGraph = this.createSmallGraph(stocks)
+  stockContainer.appendChild(smallGraph)
 
 }
+
+SavedStocksView.prototype.createSmallGraph = function (stocks) {
+  PubSub.subscribe("StockModel: Company-historical-info-small", (event) => {
+    console.log(event.detail);
+    const graph = new GraphView(stocks._id)
+    graph.render(event.detail)
+  })
+  const graphDiv = document.createElement('div')
+  graphDiv.id = stocks._id
+  return graphDiv
+
+};
 
 SavedStocksView.prototype.createHeading = function(textContent){
   const heading = document.createElement('p');
   heading.textContent = textContent;
   return heading;
-
 }
 
 SavedStocksView.prototype.createDeleteButton = function(stockId) {
     const button = document.createElement('button')
     button.classList.add('remove-button')
     button.value = stockId;
-    console.log(stockId);
-
+    // console.log(stockId);
 
   button.addEventListener('click', (event) =>{
-    // console.log(event);
     PubSub.publish('stock_view:stock-delete-clicked', event.target.value)
     console.log(event.target);
   })
