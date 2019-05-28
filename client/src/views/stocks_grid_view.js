@@ -22,8 +22,6 @@ StockGridView.prototype.bindEvents = function () {
 
 };
 
-
-
 StockGridView.prototype.render = function(companyInfo) {
   const stockView = new StockView(this.container)
   stockView.render(companyInfo)

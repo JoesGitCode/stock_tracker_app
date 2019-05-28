@@ -38,8 +38,25 @@ Stock.prototype.bindEvents = function () {
   })
 
 
+  PubSub.subscribe('search_portfolio_display:detail-selected', (event) => {
+    console.log('company info', event.detail);
+    const stockTickerName = event.detail.toUpperCase()
+    const requestHistorical = new RequestHelper(this.urlHistorical + stockTickerName)
+    console.log(requestHistorical);
+    requestHistorical.get()
+    .then((data) => {
+      const companyInfo = data
+      console.log(data);
+      PubSub.publish("StockModel:Small-graph-info" , companyInfo );
+    })
+  })
 
 };
+
+
+
+
+
 
 Stock.prototype.getRealTime = function() {
 
@@ -65,6 +82,10 @@ Stock.prototype.getRealTime = function() {
     //   })
   })
 }
+
+
+
+
 
 
 
