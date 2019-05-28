@@ -21,26 +21,30 @@ SavedStocksView.prototype.render = function(stocks) {
   const totalValue = this.createHeading("Total Value: " + stocks.strike_price * stocks.quantity)
   stockContainer.appendChild(totalValue)
 
-  const summary = document.createElement('summary')
-  summary.textContent = stocks.name + " " + stocks.strike_price
-
-  summary.addEventListener('click', (event) => {
-    console.log("summary click", event);
-    const data = stocks.name
-    PubSub.publish('SearchFormView:ticker-clicked', data)
-  })
-
-
-  stockContainer.appendChild(summary)
 
   const deleteButton = this.createDeleteButton(stocks._id);
   console.log(stocks._id);
   stockContainer.appendChild(deleteButton);
 
+  const summary = document.createElement('summary')
+  summary.textContent = stocks.name + " " + stocks.strike_price
+  summary.addEventListener('click', (event) => {
+    console.log("summary click", event);
+    const data = stocks.name
+    PubSub.publish('SearchFormView:ticker-clicked', data)
+  })
+  stockContainer.appendChild(summary)
 
   const graphdiv = document.createElement('div')
   graphdiv.id = "graph-" + stocks.name
+  console.log(graphdiv.id);
   stockContainer.appendChild(graphdiv)
+
+  // const smallGraph = new GraphView(graphdiv.id)
+  // smallGraph.bindEvents()
+  // stockContainer.appendChild(smallGraph)
+
+
 }
 
 SavedStocksView.prototype.createHeading = function(textContent){

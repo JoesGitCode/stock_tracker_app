@@ -28,7 +28,7 @@ GraphView.prototype.render = function(companyInfo){
         combinedData.push(combinedArray)
     });
     // PubSub.publish('GraphView:combined-data', combinedData)
-    element = "graph"
+    element = this.container.id.toString()
     this.renderGraph(element, companyName, combinedData)
 }
 
