@@ -13,7 +13,7 @@ SavedStocksView.prototype.render = function(stocks) {
   const companyName = this.createHeading("Name: " + stocks.name)
   stockContainer.appendChild(companyName)
 
-  const totalValue = this.createHeading("Total Value: " + stocks.strike_price * stocks.quantity)
+  const totalValue = this.createHeading("Total Value: " + (stocks.strike_price * stocks.quantity).toFixed(2))
   stockContainer.appendChild(totalValue)
 
   const summary = document.createElement('summary')
@@ -44,16 +44,19 @@ SavedStocksView.prototype.createHeading = function(textContent){
 
 
 SavedStocksView.prototype.createDeleteButton = function(stockId) {
+
+
     const button = document.createElement('button')
     button.classList.add('remove-button')
     button.value = stockId;
-    console.log(stockId);
+
+
 
 
   button.addEventListener('click', (event) =>{
-    // console.log(event);
+
     PubSub.publish('stock_view:stock-delete-clicked', event.target.value)
-    console.log(event.target);
+
   })
   return button;
 }
