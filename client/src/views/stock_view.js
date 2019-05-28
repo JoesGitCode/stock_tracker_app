@@ -42,12 +42,8 @@ StockView.prototype.render = function (companyInfo) {
   const companyVolume = this.createVolume(displayCompanyVolume)
   companyContainerRight.appendChild(companyVolume)
 
-
   const buyShareForm = this.createForm(companyInfo)
   companyContainerRight.appendChild(buyShareForm)
-
-
-
 };
 
 StockView.prototype.renderPortfolioTotal = function(total) {
@@ -114,7 +110,7 @@ StockView.prototype.createVolume= function (textContent) {
 
 
 StockView.prototype.renderTotal = function(textContent) {
-  const totalInPortfolio = document.createElement('p')
+  const totalInPortfolio = document.createElement('h1')
   totalInPortfolio.textContent = textContent
   return totalInPortfolio
 }

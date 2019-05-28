@@ -8,8 +8,6 @@ const StockGridView = function(container1, container2){
 
 }
 
-
-
 StockGridView.prototype.bindEvents = function () {
   PubSub.subscribe("StockModel: Company-historical-info", (event) => {
     this.container.innerHTML="";
@@ -31,10 +29,6 @@ StockGridView.prototype.render = function(companyInfo) {
   stockView.render(companyInfo)
 };
 
-// StockGridView.prototype.getSavedData = function(){
-//   const stockView = new StockView(this.container)
-//   stockView.buyStocks()
-// }
 
 StockGridView.prototype.postBoughtStock = function(){
   const stockView = new StockView(this.container)
