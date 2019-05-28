@@ -17,8 +17,9 @@ SavedStocksGridView.prototype.render = function(stocks) {
   this.container.innerHTML = '';
   const stockView = new SavedStocksView(this.container);
   stocks.forEach((stock) => stockView.render(stock))
-  console.log("banana");
+
 }
+
 
 
 module.exports = SavedStocksGridView;

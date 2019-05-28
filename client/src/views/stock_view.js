@@ -1,7 +1,8 @@
 const PubSub = require('../helpers/pub_sub.js')
 
-const StockView = function(container){
-  this.container = container
+const StockView = function(container1, container2){
+  this.container = container1
+  this.container2 = container2
   console.log(this.container);
 }
 
@@ -36,7 +37,23 @@ StockView.prototype.render = function (companyInfo) {
   const buyShareForm = this.createForm(companyInfo)
   companyContainerRight.appendChild(buyShareForm)
 
+
+
 };
+
+StockView.prototype.renderPortfolioTotal = function(total) {
+
+  const companyContainerLeft = document.createElement('div');
+  const companyContainerRight = document.createElement('div');
+  companyContainerLeft.id = 'total-left'
+  companyContainerLeft.id = 'total-right'
+  this.container2.appendChild(companyContainerLeft)
+  this.container2.appendChild(companyContainerRight)
+
+  const totalRender = this.renderTotal(total)
+  this.container2.appendChild(totalRender)
+}
+
 
 StockView.prototype.createSymbol = function(textContent) {
   const symbol = document.createElement('h1')
@@ -61,6 +78,12 @@ StockView.prototype.createVolume= function (textContent) {
   volume.textContent = textContent
   return volume
 };
+
+StockView.prototype.renderTotal = function(textContent) {
+  const totalInPortfolio = document.createElement('p')
+  totalInPortfolio.textContent = textContent
+  return totalInPortfolio
+}
 
 
 

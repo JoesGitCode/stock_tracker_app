@@ -37,8 +37,9 @@ Stock.prototype.bindEvents = function () {
     this.deleteStock(event.detail)
   })
 
-};
 
+
+};
 
 Stock.prototype.getRealTime = function() {
 
@@ -74,8 +75,31 @@ Stock.prototype.getData = function() {
   this.request.get()
   .then((stocks) =>{
     PubSub.publish('Stock:data-loaded', stocks);
+
+
+    const total = this.getTotalFromData(stocks)
+    PubSub.publish('Stocks:get-total', total)
+
+
   })
   .catch(console.error)
+}
+
+Stock.prototype.getTotalFromData = function (data) {
+  const valuesOfStocks = data.map((stock) => {
+    return stock.quantity * stock.strike_price
+  })
+  const totalAmount = valuesOfStocks.reduce((a,b) => {
+    return a + b
+  })
+
+  // console.log("Yooooooooooooooo", totalAmount);
+  return totalAmount.toFixed(2)
+
+
+// console.log("dfsdfnsdfsnsndfsdfsdf", this.getTotalFromData(totalAmount));
+//  this.getTotalFromData(totalAmount)
+
 }
 
 

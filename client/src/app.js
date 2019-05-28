@@ -16,11 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
   stocksearchview.bindEvents();
 
 
-  const container = document.querySelector('#stock_search_stock')
-  const stockGridView = new StockGridView(container)
+  const container1 = document.querySelector('#stock_search_stock')
+  const container2 = document.querySelector('#get-portfolio-total')
+  const stockGridView = new StockGridView(container1, container2)
   stockGridView.bindEvents()
 
-  const graphContainer = document.querySelector('div#graph')
+  const graphContainer = document.querySelector('#graph')
   const graphView = new GraphView(graphContainer)
   graphView.bindEvents()
 
@@ -44,6 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedContainer = document.querySelector('#held_stocks')
   const savedStocksGridView = new SavedStocksGridView(savedContainer)
   savedStocksGridView.bindEvents();
+
+  const getPortfolioTotal = document.querySelector('#get-portfolio-total')
+
+
 
 
 

@@ -23,6 +23,11 @@ SavedStocksView.prototype.render = function(stocks) {
   console.log(stocks._id);
   stockContainer.appendChild(deleteButton);
 
+  const getSpendingsInTotal = this.createHeading("Total " + (stocks.quantity * stocks.strike_price).toFixed(2));
+
+  console.log("My Value", getSpendingsInTotal);
+  stockContainer.appendChild(getSpendingsInTotal)
+
 
   const graph = document.createElement('div')
   graph.id = "graph-" + stocks.name
@@ -35,6 +40,8 @@ SavedStocksView.prototype.createHeading = function(textContent){
   return heading;
 
 }
+
+
 
 SavedStocksView.prototype.createDeleteButton = function(stockId) {
     const button = document.createElement('button')
