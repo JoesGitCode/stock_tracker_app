@@ -24,6 +24,6 @@ body{
   border: 2px solid black;
 }
 
-#stock{
+details {
   border:2px solid black;
 }

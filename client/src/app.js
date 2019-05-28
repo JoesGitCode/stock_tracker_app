@@ -33,7 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const stockModel = new StockModel(realTimeStockPrice, historicalStockPrice)
   stockModel.bindEvents()
   stockModel.getData()
-  stockModel.getRealTime()
+  // stockModel.getUniqueStockNames()
+  // stockModel.getRealTimeData()
 
   const savedContainer = document.querySelector('#held_stocks')
   const savedStocksGridView = new SavedStocksGridView(savedContainer)

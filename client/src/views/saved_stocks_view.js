@@ -6,16 +6,29 @@ const SavedStocksView = function(container) {
 
 SavedStocksView.prototype.render = function(stocks) {
 
+  
+  
   const stockContainer = document.createElement('details')
   stockContainer.id = 'stock';
   this.container.appendChild(stockContainer)
-
+  
   const companyName = this.createHeading("Name: " + stocks.name)
   stockContainer.appendChild(companyName)
-
+  
   const totalValue = this.createHeading("Total Value: " + stocks.strike_price * stocks.quantity)
   stockContainer.appendChild(totalValue)
-
+  
+  PubSub.subscribe('Stocks:Real-time-data-loaded', (event) => {
+    console.log('this should be two... somethings', event.detail)
+    event.detail.forEach(stock => {
+      if (stock.symbol === stocks.name){
+        const realTimeValue = this.createHeading("Current Value: " + stock.price * stocks.quantity)
+        stockContainer.appendChild(realTimeValue)
+        const returnOnIncome = ((stock.price * stocks.quantity) - (stocks.strike_price * stocks.quantity))/(stocks.strike_price * stocks.quantity)
+        const roi = this.createHeading("Retrun: " + returnOnIncome)
+        stockContainer.appendChild(roi)
+      }
+    })
   const summary = document.createElement('summary')
   summary.textContent = stocks.name + " " + stocks.strike_price
   stockContainer.appendChild(summary)
@@ -32,6 +45,8 @@ SavedStocksView.prototype.render = function(stocks) {
   const graph = document.createElement('div')
   graph.id = "graph-" + stocks.name
   stockContainer.appendChild(graph)
+})
+
 }
 
 SavedStocksView.prototype.createHeading = function(textContent){
