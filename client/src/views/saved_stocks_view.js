@@ -6,25 +6,32 @@ const SavedStocksView = function(container) {
 
 SavedStocksView.prototype.render = function(stocks) {
 
-  console.log(stocks);
-  const stockContainer = document.createElement('div')
+  const stockContainer = document.createElement('details')
   stockContainer.id = 'stock';
   this.container.appendChild(stockContainer)
 
   const companyName = this.createHeading("Name: " + stocks.name)
-
   stockContainer.appendChild(companyName)
 
-  const companyPrice = this.createHeading("Price: " + stocks.strike_price)
-  stockContainer.appendChild(companyPrice)
+  const totalValue = this.createHeading("Total Value: " + stocks.strike_price * stocks.quantity)
+  stockContainer.appendChild(totalValue)
 
-  const companyStrikePrice = this.createHeading("Quantity: " + stocks.quantity)
-  stockContainer.appendChild(companyStrikePrice)
-
+  const summary = document.createElement('summary')
+  summary.textContent = stocks.name + " " + stocks.strike_price
+  stockContainer.appendChild(summary)
   const deleteButton = this.createDeleteButton(stocks._id);
   console.log(stocks._id);
   stockContainer.appendChild(deleteButton);
 
+  const getSpendingsInTotal = this.createHeading("Total " + (stocks.quantity * stocks.strike_price).toFixed(2));
+
+  console.log("My Value", getSpendingsInTotal);
+  stockContainer.appendChild(getSpendingsInTotal)
+
+
+  const graph = document.createElement('div')
+  graph.id = "graph-" + stocks.name
+  stockContainer.appendChild(graph)
 }
 
 SavedStocksView.prototype.createHeading = function(textContent){
@@ -33,6 +40,8 @@ SavedStocksView.prototype.createHeading = function(textContent){
   return heading;
 
 }
+
+
 
 SavedStocksView.prototype.createDeleteButton = function(stockId) {
     const button = document.createElement('button')
