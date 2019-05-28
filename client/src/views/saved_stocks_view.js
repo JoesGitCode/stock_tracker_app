@@ -23,24 +23,14 @@ SavedStocksView.prototype.render = function(stocks) {
 
   const summary = document.createElement('summary')
   summary.textContent = stocks.name + " " + stocks.strike_price
+
   summary.addEventListener('click', (event) => {
     console.log("summary click", event);
-    const data = stocks.name})
-
-    const weeGraph = new GraphView(stocks._id)
-    weeGraph.bindEvents()
-    const requestHistorical = new RequestHelper(this.url + stocks.name)
-    requestHistorical.get()
-    .then((data) => {
-      const companyInfo = data
-      PubSub.publish("StockModel: Company-historical-info" , companyInfo );
-
-    // PubSub.subscribe('GraphView:combined-data', (event) => {
-    //   console.log(event);
-    //   GraphView.renderGraph(stocks._id, stocks.name, event)
-    //
-    // })
+    const data = stocks.name
+    PubSub.publish('SearchFormView:ticker-clicked', data)
   })
+
+
   stockContainer.appendChild(summary)
 
   const deleteButton = this.createDeleteButton(stocks._id);
@@ -48,9 +38,9 @@ SavedStocksView.prototype.render = function(stocks) {
   stockContainer.appendChild(deleteButton);
 
 
-  const graph = document.createElement('div')
-  graph.id = "graph-" + stocks.name
-  stockContainer.appendChild(graph)
+  const graphdiv = document.createElement('div')
+  graphdiv.id = "graph-" + stocks.name
+  stockContainer.appendChild(graphdiv)
 }
 
 SavedStocksView.prototype.createHeading = function(textContent){

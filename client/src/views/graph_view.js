@@ -10,6 +10,8 @@ GraphView.prototype.bindEvents = function(){
         const companyInfo = event.detail;
         this.render(companyInfo)
         })
+
+
 }
 
 GraphView.prototype.render = function(companyInfo){
