@@ -18,6 +18,7 @@ StockView.prototype.render = function (companyInfo) {
   companyContainerLeft.appendChild(companySymbol)
   console.log(companyInfo.historical.length);
   const displayCompanyClose =`close: ${companyInfo.historical[companyInfo.historical.length -1].close}`
+  console.log(companyInfo.historical);
   const companyRevenue = this.createClose(displayCompanyClose)
   companyContainerLeft.appendChild(companyRevenue)
 
@@ -28,6 +29,8 @@ StockView.prototype.render = function (companyInfo) {
   const displayCompanyVolume = `Volume: ${companyInfo.historical[companyInfo.historical.length -1].volume}`
   const companyVolume = this.createVolume(displayCompanyVolume)
   companyContainerRight.appendChild(companyVolume)
+
+
 
 
   const buyShareForm = this.createForm(companyInfo)
@@ -58,6 +61,8 @@ StockView.prototype.createVolume= function (textContent) {
   volume.textContent = textContent
   return volume
 };
+
+
 
 StockView.prototype.createForm = function (companyInfo){
 

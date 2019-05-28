@@ -7,9 +7,9 @@ const PageDisplay = function(){
 PageDisplay.prototype.bindEvents = function () {
 
   const toggleSearch = document.querySelector("#dashboardToggle")
-  toggleSearch.addEventListener('change', (event) => {
+  toggleSearch.addEventListener('click', (event) => {
     const heldPage = document.querySelector('#held_stocks')
-    const searchPage = document.querySelector('#searchToggle')
+    const searchPage = document.querySelector('#stock_search')
     console.log(event.target);
     console.log(searchPage);
     heldPage.classList.add('visibility')
@@ -17,13 +17,13 @@ PageDisplay.prototype.bindEvents = function () {
   })
 
   const toggleStock = document.querySelector("#searchToggle")
-  toggleStock.addEventListener('change', (event) => {
+  toggleStock.addEventListener('click', (event) => {
     const heldPage = document.querySelector('#held_stocks')
-    const searchPage = document.querySelector('#searchToggle')
+    const searchPage = document.querySelector('#stock_search')
     console.log(event.target);
     console.log(searchPage);
-    heldPage.classList.add('visibility')
-    searchPage.classList.remove('visibility')
+    heldPage.classList.remove('visibility')
+    searchPage.classList.add('visibility')
   })
 
 
