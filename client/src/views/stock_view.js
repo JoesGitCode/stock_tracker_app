@@ -136,6 +136,7 @@ StockView.prototype.handleSubmit = function (){
 };
 
 
+
 StockView.prototype.createPurchase = function (form) {
   const newPurchase = {
     name: form.company.value,
