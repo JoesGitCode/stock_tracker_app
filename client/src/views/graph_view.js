@@ -1,15 +1,15 @@
 const PubSub = require('../helpers/pub_sub')
 
 const GraphView = function(container){
-    this.container = container
-    console.log('contianer', this.container.id);
-    
+    this.container = container;
+    console.log(this.container);
 }
 
 GraphView.prototype.bindEvents = function(){
     PubSub.subscribe("StockModel: Company-historical-info", (event) => {
         console.log('company info', event.detail);
         const companyInfo = event.detail;
+
         this.render(companyInfo)
         })
 }
@@ -26,7 +26,7 @@ GraphView.prototype.render = function(companyInfo){
         combinedArray.push(shareDates[index])
         combinedArray.push(sharePrices[index])
         combinedData.push(combinedArray)
-    }); 
+    });
 
     this.renderGraph(companyName, combinedData)
 }
@@ -88,7 +88,7 @@ GraphView.prototype.renderGraph = function(companyName, combinedData){
         // chart.styledMode: true;
     })
  }
-    
+
 // GraphView.prototype.render = function(companyInfo){
 //     console.log(companyInfo.financials[0].Revenue);
 //     console.log(companyInfo.symbol);

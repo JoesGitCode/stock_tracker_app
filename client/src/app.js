@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   stockGridView.bindEvents()
 
   const graphContainer = document.querySelector('#graph')
+  console.log(graphContainer);
   const graphView = new GraphView(graphContainer)
   graphView.bindEvents()
 

@@ -1,4 +1,5 @@
 const PubSub = require('../helpers/pub_sub.js')
+const Graph = require('./graph_view.js')
 
 const StockView = function(container1, container2){
   this.container = container1
@@ -33,6 +34,9 @@ StockView.prototype.render = function (companyInfo) {
 
   const buyShareForm = this.createForm(companyInfo)
   companyContainerRight.appendChild(buyShareForm)
+
+  const companyGraph = this.createGraph(companyInfo)
+  companyContainerRight.appendChild(companyGraph)
 };
 
 StockView.prototype.renderPortfolioTotal = function(total) {
@@ -77,6 +81,12 @@ StockView.prototype.renderTotal = function(textContent) {
   const totalInPortfolio = document.createElement('h1')
   totalInPortfolio.textContent = textContent
   return totalInPortfolio
+}
+
+StockView.prototype.createGraph = function (companyInfo){
+  const graph = document.createElement('div')
+  graph.id = "graph"
+  return graph
 }
 
 
