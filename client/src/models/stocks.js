@@ -115,6 +115,7 @@ Stock.prototype.getTotalFromData = function (data) {
   })
 
   // console.log("Yooooooooooooooo", totalAmount);
+
   return totalAmount.toFixed(2)
 
 
@@ -128,6 +129,8 @@ Stock.prototype.postBoughtStock = function(BuyShareInfo){
   this.request.post(BuyShareInfo)
   .then((shares) => {
     PubSub.publish('Stock:data-loaded', shares)
+    const total = this.getTotalFromData(shares)
+    PubSub.publish('Stocks:get-total', total)
   })
 }
 
@@ -135,6 +138,7 @@ Stock.prototype.postBoughtStock = function(BuyShareInfo){
 Stock.prototype.deleteStock = function(stockId) {
     this.request.delete(stockId)
       .then((stocks) =>{
+
         PubSub.publish('Stock:data-loaded', stocks)
       })
 }

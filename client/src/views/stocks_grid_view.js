@@ -36,6 +36,7 @@ StockGridView.prototype.postBoughtStock = function(){
 StockGridView.prototype.getTotalFromData = function (portfolioTotal) {
   const stockView = new StockView(this.container1, this.container2)
   stockView.renderPortfolioTotal(portfolioTotal);
+
 }
 
 
