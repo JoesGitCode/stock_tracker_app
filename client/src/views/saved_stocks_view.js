@@ -6,6 +6,7 @@ const SavedStocksView = function(container) {
 
 SavedStocksView.prototype.render = function(stocks) {
 
+  const initialStockValue = stocks.strike_price * stocks.quantity
   
   
   const stockContainer = document.createElement('details')
@@ -15,18 +16,19 @@ SavedStocksView.prototype.render = function(stocks) {
   const companyName = this.createHeading("Name: " + stocks.name)
   stockContainer.appendChild(companyName)
   
-  const totalValue = this.createHeading("Total Value: " + stocks.strike_price * stocks.quantity)
+  const totalValue = this.createHeading("Total Value: " + initialStockValue)
   stockContainer.appendChild(totalValue)
   
   PubSub.subscribe('Stocks:Real-time-data-loaded', (event) => {
     console.log('this should be two... somethings', event.detail)
     event.detail.forEach(stock => {
       if (stock.symbol === stocks.name){
-        const realTimeValue = this.createHeading("Current Value: " + stock.price * stocks.quantity)
+        const currentStockValue = stock.price * stocks.quantity
+        const realTimeValue = this.createHeading("Current Value: " + currentStockValue)
         stockContainer.appendChild(realTimeValue)
-        const returnOnIncome = ((stock.price * stocks.quantity) - (stocks.strike_price * stocks.quantity))/(stocks.strike_price * stocks.quantity)
-        const roi = this.createHeading("Retrun: " + returnOnIncome)
-        stockContainer.appendChild(roi)
+        const returnOnIncome = (currentStockValue - initialStockValue)/initialStockValue
+        const percentageChange = this.createHeading("Percentage Change: " + (returnOnIncome * 100).toFixed(2) + "%")
+        stockContainer.appendChild(percentageChange)
       }
     })
   const summary = document.createElement('summary')

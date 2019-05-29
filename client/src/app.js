@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedStocksGridView = new SavedStocksGridView(savedContainer)
   savedStocksGridView.bindEvents();
 
-  const getPortfolioTotal = document.querySelector('#get-portfolio-total')
+  // const getPortfolioTotal = document.querySelector('#get-portfolio-total')
 
 
 
