@@ -17,13 +17,9 @@ SavedStocksView.prototype.render = function(stocks) {
   const companyName = this.createHeading("Name: " + stocks.name)
   stockContainer.appendChild(companyName)
 
-  const totalValue = this.createHeading("Total Value: " + initialStockValue.toFixed(2))
+  const totalValue = this.createHeading("Total Value: $" + initialStockValue.toFixed(2))
   stockContainer.appendChild(totalValue)
 
-  const deleteButton = this.createDeleteButton(stocks._id);
-  stockContainer.appendChild(deleteButton);
-  const spendingTotal = stocks.quantity * stocks.strike_price
-  const getSpendingsInTotal = this.createHeading("Total " + (spendingTotal).toFixed(2));
 
   PubSub.subscribe('Stocks:Real-time-data-loaded', (event) => {
     console.log('this should be two... somethings', event.detail)
@@ -44,6 +40,14 @@ SavedStocksView.prototype.render = function(stocks) {
 
   stockContainer.appendChild(getSpendingsInTotal)
 })
+
+const deleteButton = this.createDeleteButton(stocks._id);
+deleteButton.id = 'deleteButton'
+deleteButton.textContent= 'Sell'
+stockContainer.appendChild(deleteButton);
+const spendingTotal = stocks.quantity * stocks.strike_price
+const getSpendingsInTotal = this.createHeading("Total " + (spendingTotal).toFixed(2));
+
 }
 
 SavedStocksView.prototype.createHeading = function(textContent){

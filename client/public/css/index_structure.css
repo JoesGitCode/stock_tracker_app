@@ -7,16 +7,17 @@ html{
   height: 100%;
   background: #023689;
 }
-
+/*
 div{
   border:2px solid black;
-}
+} */
 
 h4{
   font-size: 2rem;
   padding-bottom: 2%;
 
 }
+
 
 h3{
   font-size: 2rem;
@@ -110,6 +111,7 @@ summary{
 
 #get-portfolio-total{
   padding: 5rem;
+  text-align: center;
 }
 
 
@@ -154,7 +156,7 @@ details {
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: black;
-  opacity: 0.; /* Firefox */
+  opacity: 0.5; /* Firefox */
   text-transform: capitalize !important;
 }
 
@@ -256,4 +258,11 @@ details {
 
   font-size: 1.5rem;
 
+}
+
+#deleteButton{
+  background: green;
+  font-size: 2rem;
+  color: white;
+  background: #d35652;
 }

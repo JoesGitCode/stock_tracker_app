@@ -76,7 +76,7 @@ StockView.prototype.createSymbol = function(textContent) {
 
 StockView.prototype.createChangePercent = function(textContent) {
   const changePercent = document.createElement('h4')
-  changePercent.textContent = textContent
+  changePercent.textContent = textContent 
   return changePercent
 }
 
@@ -116,7 +116,7 @@ StockView.prototype.createVolume= function (textContent) {
 
 StockView.prototype.renderTotal = function(textContent) {
   const totalInPortfolio = document.createElement('h1')
-  totalInPortfolio.textContent = textContent
+  totalInPortfolio.textContent = 'Total Portfolio: $' + textContent
   return totalInPortfolio
 }
 
