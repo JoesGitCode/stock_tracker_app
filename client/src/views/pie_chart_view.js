@@ -39,13 +39,13 @@ PieChart.prototype.render = function(dataArrayForPieChart){
                     enabled: true,
                     format: '<b>{point.name}</b>: {point.percentage:.1f} %',
                     style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'white'
                     }
                 }
             }
         },
         series: [{
-            name: 'Your Portfolio',
+            name: 'Allocation',
             colorByPoint: true,
             data: dataArrayForPieChart
         }]
