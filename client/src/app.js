@@ -6,6 +6,7 @@ const SavedStocksView = require('./views/saved_stocks_view.js');
 const SavedStocksGridView = require('./views/saved_stocks_grid_view.js');
 const ProfitDisplay = require('./views/profit_display.js')
 const PageDisplay = require('./views/search_portfolio_display.js')
+const PieChart = require('./views/pie_chart_view.js')
 
 
 
@@ -26,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const graphView = new GraphView(graphContainer)
   graphView.bindEvents()
 
+  const pieChartContainer = document.querySelector('#pie-chart')
+  const pieChartView = new PieChart(pieChartContainer)
+  pieChartView.bindEvents()
 
   const profitContainer = document.querySelector('#roi')
   const profitDisplay = new ProfitDisplay(profitContainer)

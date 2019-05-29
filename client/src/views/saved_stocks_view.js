@@ -10,7 +10,6 @@ SavedStocksView.prototype.render = function(stocks) {
 
   const initialStockValue = stocks.strike_price * stocks.quantity
   
-  
   const stockContainer = document.createElement('details')
   stockContainer.id = 'stock';
   this.container.appendChild(stockContainer)
@@ -39,10 +38,9 @@ SavedStocksView.prototype.render = function(stocks) {
 
   const deleteButton = this.createDeleteButton(stocks._id);
   stockContainer.appendChild(deleteButton);
+  const spendingTotal = stocks.quantity * stocks.strike_price
+  const getSpendingsInTotal = this.createHeading("Total " + (spendingTotal).toFixed(2));
 
-  const getSpendingsInTotal = this.createHeading("Total " + (stocks.quantity * stocks.strike_price).toFixed(2));
-
-  console.log("My Value", getSpendingsInTotal);
   stockContainer.appendChild(getSpendingsInTotal)
 })
 }
@@ -53,8 +51,6 @@ SavedStocksView.prototype.createHeading = function(textContent){
   return heading;
 
 }
-
-
 
 SavedStocksView.prototype.createDeleteButton = function(stockId) {
 
