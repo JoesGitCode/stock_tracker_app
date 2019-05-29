@@ -27,6 +27,24 @@ PageDisplay.prototype.bindEvents = function () {
     searchPage.classList.add('visibility')
   })
 
+
+  const searchSubmit = document.querySelector("#input_stock_pick")
+  searchSubmit.addEventListener('submit', (event) => {
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",event);
+    const stockSearchResult = document.querySelector('#banana')
+    console.log(stockSearchResult);
+    stockSearchResult.classList.remove('visibility')
+  })
+
+  // const buySubmit = document.querySelector("#buy-share-form")
+  // console.log("buySubmit", buySubmit);
+  // buySubmit.addEventListener('submit', (event) => {
+  //   console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",event);
+  //   const buyResult = document.querySelector('#banana')
+  //   console.log(buyResult);
+  //   buyResult.classList.add('visibility')
+  // })
+
   const activateDetail = document.querySelector('#held_stocks')
   activateDetail.addEventListener('click', (event) => {
   console.log(event);

@@ -12,9 +12,9 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/index_structure.css">
   <link rel="stylesheet" href="css/display.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
   <!-- <script src="https://code.highcharts.com/5.0.0/js/highcharts.js"></script> -->
-  <link href="https://code.highcharts.com/5.0.0/css/highcharts.css" rel="stylesheet" type="text/css">
+  <!-- <link href="https://code.highcharts.com/5.0.0/css/highcharts.css" rel="stylesheet" type="text/css"> -->
   <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/mobile.css">
   <link href="css/chart-style.css" rel="stylesheet" type="text/css">
 
@@ -22,32 +22,46 @@
 <body>
 
   <nav>
-    <div>
-      <h1> Barcleys </h1>
-    </div>
 
     <div id="dashboard" >
+      <div id='logo'>
+      <h1 class="logo"> Barclays </h1>
+      </div>
+
+      <div id='buttons'>
       <input type="button" class="toggler" value= "search" id="dashboardToggle">
       <input type="button" class="toggler"  value= "portfolio" id="searchToggle">
+      </div>
     </div>
   </nav>
 
 
   <div class ="form_setup visibility" id="stock_search">
-    <h1>Find Stock Information</h1>
-    <h3>Enter company stock name and find the latest information</h3>
-    <form id="input_stock_pick">
+    <div class="form_items">
+
+    <div>
+      <h1 class="stock-search-header">Invest in the Market</h1>
+    </div>
+    <div>
+      <h3 class="stock-search-label">Enter company stock name and find the latest information</h3>
+    </div>
+    <form id="input_stock_pick" autocomplete="off">
       <div class = "input_form_div">
-        <input type="text" id="stockname" placeholder="Enter location visited" >
-      </div>
-      <div class = "input_form_div">
-        <input class="submit" type="submit" value="Submit"/>
+
+
+          <input type="text" id="stockname" placeholder="Enter NYSE Stock Ticker"  >
+
+
+        <input class="submit" type="submit" value="Submit" id="searchSubmit">
       </div>
     </form>
+    <div  class="visibility" id="banana">
     <div class = "search-box"  id="stock_search_stock">
+    </div>
+  </div>
+  </div>
       <div id="graph">
       </div>
-    </div>
   </div>
 
 

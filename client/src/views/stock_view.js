@@ -27,7 +27,8 @@ StockView.prototype.render = function (companyInfo) {
   const date = this.createDate(displayDate)
   companyContainerLeft.appendChild(date)
 
-  const displayChangePercent = `Change Percent: ${companyInfo.historical[companyInfo.historical.length -1].open}`
+  const displayChangePercent = `Change Percent: ${companyInfo.historical[companyInfo.historical.length -1].changePercent.toFixed(3)}`
+
   const changePercent = this.createChangePercent(displayChangePercent)
   companyContainerLeft.appendChild(changePercent)
 
@@ -41,10 +42,10 @@ StockView.prototype.render = function (companyInfo) {
 
   const displayCompanyVolume = `Volume: ${(companyInfo.historical[companyInfo.historical.length -1].volume).toFixed(2)}`
   const companyVolume = this.createVolume(displayCompanyVolume)
-  companyContainerRight.appendChild(companyVolume)
+  companyContainerLeft.appendChild(companyVolume)
 
   const buyShareForm = this.createForm(companyInfo)
-  companyContainerRight.appendChild(buyShareForm)
+  companyContainerLeft.appendChild(buyShareForm)
 
   const companyGraph = this.createGraph(companyInfo)
   companyContainerRight.appendChild(companyGraph)
@@ -54,12 +55,12 @@ StockView.prototype.renderPortfolioTotal = function(total) {
 
   this.container2.innerHTML = ""
 
-  const companyContainerLeft = document.createElement('div');
-  const companyContainerRight = document.createElement('div');
-  companyContainerLeft.id = 'total-left'
-  companyContainerLeft.id = 'total-right'
-  this.container2.appendChild(companyContainerLeft)
-  this.container2.appendChild(companyContainerRight)
+  // const companyContainerLeft = document.createElement('div');
+  // const companyContainerRight = document.createElement('div');
+  // companyContainerLeft.id = 'total-left'
+  // companyContainerLeft.id = 'total-right'
+  // this.container2.appendChild(companyContainerLeft)
+  // this.container2.appendChild(companyContainerRight)
 
   const totalRender = this.renderTotal(total)
   this.container2.appendChild(totalRender)
@@ -150,9 +151,11 @@ StockView.prototype.createForm = function (companyInfo){
 
   buyInputPriceQauntity.setAttribute('type', 'number')
   buyInputPriceQauntity.setAttribute('name', 'quantity')
+  buyInputPriceQauntity.classList.add('buyShareBox')
 
   buyShareButton.setAttribute('type', 'submit')
-  buyShareButton.setAttribute('value', 'buy')
+  buyShareButton.setAttribute('value', 'BUY')
+  buyShareButton.classList.add('buyShareButton')
 
   currentSharePrice.appendChild(inputCompanyName)
   currentSharePrice.appendChild(buyInputPrice)

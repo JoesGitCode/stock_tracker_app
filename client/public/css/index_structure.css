@@ -5,25 +5,63 @@
 html{
   width:100%;
   height: 100%;
-  background: linear-gradient(#000f2e, #023689);
+  background: #023689;
 }
 
 div{
   border:2px solid black;
 }
 
-input[type="button"]{
+h4{
+  font-size: 2rem;
+  padding-bottom: 2%;
+
+}
+
+h3{
+  font-size: 2rem;
+  padding-top: 1%;
+  font-weight: 300;
+
+}
+
+.toggler{
+  display: inline-block;
   background: none;
   border:none;
-  padding: 2%;
+  padding: 2rem;
+
 
   color: white;
   font-size: 24px;
 }
 
+.toggler:hover{
+  color:grey;
+}
 
-input[type="button"]:active{
-  border:none;
+.toggler:focus{
+  outline:none;
+}
+
+#companySearchRight{
+  width: 75%;
+  padding-right: 10%;
+  padding-left: 5%;
+}
+
+#companySearchLeft{
+  width: 25%;
+}
+
+#companySearchRight, #companySearchLeft{
+  height: 50%;
+}
+
+.search-box{
+  padding-top: 3%;
+  padding-bottom: 30px;
+
 }
 
 h1,h2,h3,h4,h5{
@@ -36,11 +74,44 @@ details{
   padding: 5%, 5%;
   margin: 2% 10% 2% 10%;
   background-color:white;
+  border-radius: 0.5rem;
+
+  font-size: 2rem;
+  font-family: 'Roboto', sans-serif;
 }
 
 summary{
   color:black;
 }
+
+#dashboard{
+  width:100%;
+  display: flex;
+  padding-top:5%
+}
+
+#buttons{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10%;
+  width:50%;
+}
+
+#logo{
+
+  width:50%;
+  padding-left: 10%
+
+}
+
+.logo{
+  padding-top: 2rem;
+}
+
+#get-portfolio-total{
+  padding: 5rem;
+}
+
 
 
 .li{
@@ -52,11 +123,137 @@ summary{
 .search-box{
   width:100%;
   display: flex;
-
+  background: white;
   border:2px solid black;
 }
 
 
 details {
   border:2px solid black;
+}
+
+.form_setup{
+  text-align: center;
+}
+
+.form_setup h1{
+  font-size: 60px;
+}
+
+#stockname{
+
+  background: white;
+  width: 30rem;
+  height: 3rem;
+  font-size: 2.5rem;
+  outline: none;
+  border-bottom: 2px solid white;
+  text-transform: uppercase;
+
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  opacity: 0.; /* Firefox */
+  text-transform: capitalize !important;
+}
+
+
+
+.submit{
+  height: 3rem;
+  border:3px solid white;
+  background: none;
+  border-radius: 0.5rem;
+  margin-left: 3%;
+  padding-left: 3%;
+  padding-right: 3%;
+  color: white;
+
+  font-size: 2rem;
+}
+
+.submit:hover{
+  background: #21ce99;
+  color:white;
+}
+.submit:focus{
+  background: #21ce99;
+  color:white;
+}
+
+.stock-search-header{
+  text-align: center;
+  padding-top: 5%;
+}
+
+.stock-search-label{
+  text-align: center;
+
+}
+
+
+#input_stock_pick{
+  padding-top: 3%;
+  padding-bottom: 6%;
+}
+
+
+.input_form_div{
+  display: flex;
+  justify-content: center;
+}
+
+#companySearchLeft{
+  text-align: left;
+  padding-left: 10%;
+  color:black !important;
+  height: 30rem;
+}
+
+#companySearchLeft h1{
+  font-size: 6rem;
+  padding-bottom:10%;
+  color:black !important;
+
+}
+
+#companySearchLeft h4{
+  font-size: 1.5rem;
+  color:black !important;
+}
+
+#companSearchRight{
+  height: 30rem;
+}
+
+
+.buyShareButton{
+
+  height: 3rem;
+  border:3px solid white;
+  border-radius: 0.25rem;
+  margin-left: 3%;
+  padding-left: 3%;
+  padding-right: 3%;
+  background: #21ce99;
+  color:white;
+
+  font-size: 1.5rem;
+
+}
+
+.buyShareBox{
+
+  height: 2rem;
+  border:3px solid grey;
+  background: none;
+  border-radius: 0.25rem;
+  margin-left: 3%;
+  padding-left: 3%;
+  padding-right: 3%;
+  color:black;
+
+  font-size: 1.5rem;
+
 }

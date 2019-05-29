@@ -2,13 +2,12 @@
 
 
 #graph {
-	height: 50%;
-	max-width: 800px;
+	height: 30rem;
 	margin: 0 auto;
 }
 
 .highcharts-background {
-    fill: #343435;
+    fill: white;
   }
 
   .highcharts-grid {
