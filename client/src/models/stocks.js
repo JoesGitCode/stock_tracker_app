@@ -37,8 +37,30 @@ Stock.prototype.bindEvents = function () {
   })
 };
 
-Stock.prototype.getUniqueStockNames = function(data) {
 
+
+PubSub.subscribe('search_portfolio_display:detail-selected', (event) => {
+  console.log('company info', event.detail);
+  const stockTickerName = event.detail.toUpperCase()
+  const requestHistorical = new RequestHelper(this.urlHistorical + stockTickerName)
+  console.log(requestHistorical);
+  requestHistorical.get()
+  .then((data) => {
+    const companyInfo = data
+    console.log(data);
+    PubSub.publish("StockModel:Small-graph-info" , companyInfo );
+  })
+})
+
+
+
+
+
+
+
+
+
+Stock.prototype.getUniqueStockNames = function(data) {
   // PubSub.subscribe('Stock:data-loaded', (event)=> {
   //   console.log('what is this?', event.detail);
   //   const data = event.detail
@@ -83,6 +105,10 @@ Stock.prototype.getRealTimeData = function (stocks) {
 };
 
 
+
+
+
+
 Stock.prototype.getData = function() {
   this.request.get()
   .then((stocks) =>{
@@ -107,6 +133,7 @@ Stock.prototype.getTotalFromData = function (data) {
   })
 
   // console.log("Yooooooooooooooo", totalAmount);
+
   return totalAmount.toFixed(2)
 
 // console.log("dfsdfnsdfsnsndfsdfsdf", this.getTotalFromData(totalAmount));
@@ -118,6 +145,8 @@ Stock.prototype.postBoughtStock = function(BuyShareInfo){
   this.request.post(BuyShareInfo)
   .then((shares) => {
     PubSub.publish('Stock:data-loaded', shares)
+    const total = this.getTotalFromData(shares)
+    PubSub.publish('Stocks:get-total', total)
   })
 }
 
@@ -125,6 +154,7 @@ Stock.prototype.postBoughtStock = function(BuyShareInfo){
 Stock.prototype.deleteStock = function(stockId) {
     this.request.delete(stockId)
       .then((stocks) =>{
+
         PubSub.publish('Stock:data-loaded', stocks)
       })
 }

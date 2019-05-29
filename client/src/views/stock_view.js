@@ -1,4 +1,5 @@
 const PubSub = require('../helpers/pub_sub.js')
+const Graph = require('./graph_view.js')
 
 const StockView = function(container1, container2){
   this.container = container1
@@ -11,34 +12,47 @@ StockView.prototype.render = function (companyInfo) {
   const companyContainerLeft = document.createElement('div');
   const companyContainerRight = document.createElement('div');
   companyContainerLeft.id = 'companySearchLeft'
-  companyContainerLeft.id = 'companySearchRight'
+  companyContainerRight.id = 'companySearchRight'
   this.container.appendChild(companyContainerLeft)
   this.container.appendChild(companyContainerRight)
 
   const companySymbol = this.createSymbol(companyInfo.symbol)
   companyContainerLeft.appendChild(companySymbol)
   console.log(companyInfo.historical.length);
-  const displayCompanyClose =`close: ${companyInfo.historical[companyInfo.historical.length -1].close}`
+  const displayCompanyClose =`Close: ${companyInfo.historical[companyInfo.historical.length -1].close}`
   const companyRevenue = this.createClose(displayCompanyClose)
   companyContainerLeft.appendChild(companyRevenue)
+
+  const displayDate = `Date: ${companyInfo.historical[companyInfo.historical.length -1].close}`
+  const date = this.createDate(displayDate)
+  companyContainerLeft.appendChild(date)
+
+  const displayChangePercent = `Change Percent: ${companyInfo.historical[companyInfo.historical.length -1].open}`
+  const changePercent = this.createChangePercent(displayChangePercent)
+  companyContainerLeft.appendChild(changePercent)
 
   const displayCompanyOpen =`Open: ${companyInfo.historical[companyInfo.historical.length -1].open}`
   const companyGrossProfit = this.createOpen(displayCompanyOpen)
   companyContainerLeft.appendChild(companyGrossProfit)
 
-  const displayCompanyVolume = `Volume: ${companyInfo.historical[companyInfo.historical.length -1].volume}`
+  const displayCompanyHigh = `High: ${companyInfo.historical[companyInfo.historical.length -1].high}`
+  const companyHigh = this.createHigh(displayCompanyHigh)
+  companyContainerLeft.appendChild(companyHigh)
+
+  const displayCompanyVolume = `Volume: ${(companyInfo.historical[companyInfo.historical.length -1].volume).toFixed(2)}`
   const companyVolume = this.createVolume(displayCompanyVolume)
   companyContainerRight.appendChild(companyVolume)
-
 
   const buyShareForm = this.createForm(companyInfo)
   companyContainerRight.appendChild(buyShareForm)
 
-
-
+  const companyGraph = this.createGraph(companyInfo)
+  companyContainerRight.appendChild(companyGraph)
 };
 
 StockView.prototype.renderPortfolioTotal = function(total) {
+
+  this.container2.innerHTML = ""
 
   const companyContainerLeft = document.createElement('div');
   const companyContainerRight = document.createElement('div');
@@ -49,6 +63,7 @@ StockView.prototype.renderPortfolioTotal = function(total) {
 
   const totalRender = this.renderTotal(total)
   this.container2.appendChild(totalRender)
+
 }
 
 
@@ -58,11 +73,23 @@ StockView.prototype.createSymbol = function(textContent) {
   return symbol
 };
 
+StockView.prototype.createChangePercent = function(textContent) {
+  const changePercent = document.createElement('h4')
+  changePercent.textContent = textContent
+  return changePercent
+}
+
 StockView.prototype.createClose = function (textContent) {
   const close = document.createElement('h4')
   close.textContent = textContent
   return close
 };
+
+StockView.prototype.createDate = function(textContent) {
+  const date = document.createElement('h4')
+  date.textContent = textContent
+  return date
+}
 
 StockView.prototype.createOpen= function (textContent) {
   const open = document.createElement('h4')
@@ -70,16 +97,32 @@ StockView.prototype.createOpen= function (textContent) {
   return open
 };
 
+
+StockView.prototype.createHigh = function(textContent) {
+  const high = document.createElement('h4')
+  high.textContent = textContent
+  return high
+
+}
+
 StockView.prototype.createVolume= function (textContent) {
   const volume = document.createElement('h4')
   volume.textContent = textContent
   return volume
 };
 
+
+
 StockView.prototype.renderTotal = function(textContent) {
-  const totalInPortfolio = document.createElement('p')
+  const totalInPortfolio = document.createElement('h1')
   totalInPortfolio.textContent = textContent
   return totalInPortfolio
+}
+
+StockView.prototype.createGraph = function (companyInfo){
+  const graph = document.createElement('div')
+  graph.id = "graph"
+  return graph
 }
 
 
@@ -117,7 +160,7 @@ StockView.prototype.createForm = function (companyInfo){
   currentSharePrice.appendChild(buyShareButton)
   return currentSharePrice
 };
-
+//check
 StockView.prototype.handleSubmit = function (){
   const saveStockFormContainer = document.querySelector('#buy-share-form');
   saveStockFormContainer.addEventListener('submit', (event)=>{
@@ -127,6 +170,7 @@ StockView.prototype.handleSubmit = function (){
     PubSub.publish('stock_view:shares-bought-published', data )
   })
 };
+
 
 
 StockView.prototype.createPurchase = function (form) {
