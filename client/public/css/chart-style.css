@@ -7,7 +7,7 @@
 }
 
 .highcharts-background {
-    fill: white;
+    fill: rgb(0,0,0,0);
   }
 
   .highcharts-grid {

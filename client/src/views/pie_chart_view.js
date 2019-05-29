@@ -17,7 +17,7 @@ PieChart.prototype.bindEvents = function(){
 }
 
 PieChart.prototype.render = function(dataArrayForPieChart){
-    
+
     Highcharts.chart('pie-chart', {
         chart: {
             plotBackgroundColor: null,
@@ -26,7 +26,10 @@ PieChart.prototype.render = function(dataArrayForPieChart){
             type: 'pie'
         },
         title: {
-            text: 'Your Portfolio'
+            text: 'Your Portfolio',
+            style: {
+                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'white'
+            },
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -49,7 +52,7 @@ PieChart.prototype.render = function(dataArrayForPieChart){
             colorByPoint: true,
             data: dataArrayForPieChart
         }]
-        
+
     });
 }
 
