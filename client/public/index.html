@@ -8,6 +8,7 @@
   <script src="https://code.highcharts.com/stock/highstock.js"></script>
   <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/index_structure.css">
   <link rel="stylesheet" href="css/display.css">
@@ -15,18 +16,22 @@
   <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/mobile.css">
   <link href="https://code.highcharts.com/5.0.0/css/highcharts.css" rel="stylesheet" type="text/css">
   <link href="css/chart-style.css" rel="stylesheet" type="text/css">
-</head>
 
+</head>
 <body>
+
   <nav>
     <div>
       <h1> Barcleys </h1>
     </div>
+
     <div id="dashboard" >
       <input type="button" class="toggler" value= "search" id="dashboardToggle">
       <input type="button" class="toggler"  value= "portfolio" id="searchToggle">
     </div>
   </nav>
+
+
   <div class ="form_setup visibility" id="stock_search">
     <h1>Find Stock Information</h1>
     <h3>Enter company stock name and find the latest information</h3>
@@ -43,11 +48,14 @@
       </div>
     </div>
   </div>
-  <div id="portfolio" class="portfolio">
+
+
+
+  <div id="portfolio">
     <div id="get-portfolio-total"></div>
     <div id="held_stocks"></div>
-    <!-- <div id="graph">
-    </div> -->
   </div>
+
+
 </body>
 </html>

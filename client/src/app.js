@@ -8,6 +8,7 @@ const ProfitDisplay = require('./views/profit_display.js')
 const PageDisplay = require('./views/search_portfolio_display.js')
 
 
+
 document.addEventListener('DOMContentLoaded', () => {
 
   const element = document.querySelector('#input_stock_pick')
@@ -15,13 +16,16 @@ document.addEventListener('DOMContentLoaded', () => {
   stocksearchview.bindEvents();
 
 
-  const container = document.querySelector('#stock_search_stock')
-  const stockGridView = new StockGridView(container)
+  const container1 = document.querySelector('#stock_search_stock')
+  const container2 = document.querySelector('#get-portfolio-total')
+  const stockGridView = new StockGridView(container1, container2)
   stockGridView.bindEvents()
 
-  const graphContainer = document.querySelector('div#graph')
+  const graphContainer = document.querySelector('#graph')
+  console.log(graphContainer);
   const graphView = new GraphView(graphContainer)
   graphView.bindEvents()
+
 
   const profitContainer = document.querySelector('#roi')
   const profitDisplay = new ProfitDisplay(profitContainer)
@@ -42,6 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedContainer = document.querySelector('#held_stocks')
   const savedStocksGridView = new SavedStocksGridView(savedContainer)
   savedStocksGridView.bindEvents();
+
+  const getPortfolioTotal = document.querySelector('#get-portfolio-total')
+
+
 
 
 
