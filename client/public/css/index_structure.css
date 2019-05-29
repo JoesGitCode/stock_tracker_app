@@ -160,6 +160,10 @@ details {
   text-transform: capitalize !important;
 }
 
+.textAlign{
+  text-align: center;
+}
+
 
 
 .submit{
