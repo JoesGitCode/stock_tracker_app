@@ -16,7 +16,9 @@ SavedStocksGridView.prototype.bindEvents = function(){
 SavedStocksGridView.prototype.render = function(stocks) {
   this.container.innerHTML = '';
   const stockView = new SavedStocksView(this.container);
-  stocks.forEach((stock) => stockView.render(stock))
+  stocks.forEach((stock) => {
+    stockView.render(stock)
+  })
 
 }
 

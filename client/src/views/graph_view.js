@@ -16,14 +16,6 @@ GraphView.prototype.bindEvents = function(){
 
 }
 
-GraphView.prototype.smallGraph = function(container){
-  PubSub.subscribe("StockModel:Small-graph-info", (event) => {
-    console.log('company info', event.detail);
-    const containerb = container
-    const companyInfo = event.detail;
-    this.render(companyInfo)
-  })
-}
 
 
   GraphView.prototype.render = function(companyInfo){

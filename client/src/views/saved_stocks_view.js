@@ -37,13 +37,15 @@ SavedStocksView.prototype.render = function(stocks) {
         stockContainer.appendChild(percentageChange)
       }
     })
+  })
+  
   const summary = document.createElement('summary')
   summary.textContent = stocks.name + " " + stocks.strike_price
   stockContainer.appendChild(summary)
 
 
   stockContainer.appendChild(getSpendingsInTotal)
-})
+
 }
 
 SavedStocksView.prototype.createHeading = function(textContent){
