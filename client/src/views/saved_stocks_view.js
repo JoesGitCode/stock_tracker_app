@@ -24,27 +24,27 @@ SavedStocksView.prototype.render = function(stocks) {
   stockContainer.appendChild(deleteButton);
   const spendingTotal = stocks.quantity * stocks.strike_price
   const getSpendingsInTotal = this.createHeading("Total " + (spendingTotal).toFixed(2));
-
-  PubSub.subscribe('Stocks:Real-time-data-loaded', (event) => {
-    console.log('this should be two... somethings', event.detail)
-    event.detail.forEach(stock => {
-      if (stock.symbol === stocks.name){
-        const currentStockValue = stock.price * stocks.quantity
-        const realTimeValue = this.createHeading("Current Value: " + currentStockValue)
-        stockContainer.appendChild(realTimeValue)
-        const returnOnIncome = (currentStockValue - initialStockValue)/initialStockValue
-        const percentageChange = this.createHeading("Percentage Change: " + (returnOnIncome * 100).toFixed(2) + "%")
-        stockContainer.appendChild(percentageChange)
-      }
-    })
+  //
+  // PubSub.subscribe('Stocks:Real-time-data-loaded', (event) => {
+  //   console.log('this should be two... somethings', event.detail)
+  //   event.detail.forEach(stock => {
+  //     if (stock.symbol === stocks.name){
+  //       const currentStockValue = stock.price * stocks.quantity
+  //       const realTimeValue = this.createHeading("Current Value: " + currentStockValue)
+  //       stockContainer.appendChild(realTimeValue)
+  //       const returnOnIncome = (currentStockValue - initialStockValue)/initialStockValue
+  //       const percentageChange = this.createHeading("Percentage Change: " + (returnOnIncome * 100).toFixed(2) + "%")
+  //       stockContainer.appendChild(percentageChange)
+  //     }
+  //   })
   const summary = document.createElement('summary')
   summary.textContent = stocks.name + " " + stocks.strike_price
   stockContainer.appendChild(summary)
 
 
   stockContainer.appendChild(getSpendingsInTotal)
-})
 }
+
 
 SavedStocksView.prototype.createHeading = function(textContent){
   const heading = document.createElement('p');

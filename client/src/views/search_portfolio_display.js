@@ -49,11 +49,11 @@ PageDisplay.prototype.bindEvents = function () {
   activateDetail.addEventListener('click', (event) => {
   console.log(event);
   let comapanyNameDetail = event.toElement.innerText
+  console.log(comapanyNameDetail);
   // const meh = comapanyNameDetail.split(" ")
   comapanyNameDetail = comapanyNameDetail.substr(0, comapanyNameDetail.indexOf(' '));
   PubSub.publish('search_portfolio_display:detail-selected', comapanyNameDetail )
-  const graph = new Graph(activateDetail)
-  graph.renderSmallGraph()
+
   console.log(comapanyNameDetail);
 
   })

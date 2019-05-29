@@ -5,7 +5,7 @@ const RequestHelper = require('../helpers/request_helper.js')
 const Stock = function (urlReal, urlHistorical) {
   this.urlReal = urlReal
   console.log('realtime', urlReal);
-  
+
   this.urlHistorical = urlHistorical
   this.request = new RequestHelper('http://localhost:3000/api/stocks')
 };
@@ -39,18 +39,17 @@ Stock.prototype.bindEvents = function () {
 
 
 
-PubSub.subscribe('search_portfolio_display:detail-selected', (event) => {
-  console.log('company info', event.detail);
-  const stockTickerName = event.detail.toUpperCase()
-  const requestHistorical = new RequestHelper(this.urlHistorical + stockTickerName)
-  console.log(requestHistorical);
-  requestHistorical.get()
-  .then((data) => {
-    const companyInfo = data
-    console.log(data);
-    PubSub.publish("StockModel:Small-graph-info" , companyInfo );
-  })
-})
+// PubSub.subscribe('search_portfolio_display:detail-selected', (event) => {
+//   console.log('company info', event.detail);
+//   const stockTickerName = event.detail.toUpperCase()
+//   const requestReal = new RequestHelper(this.urlReal + stockTickerName)
+//   console.log(requestReal);
+//   requestReal.get()
+//   .then((data) => {
+//     const companyInfo = data
+//     console.log(data);
+//   })
+// })
 
 
 
@@ -80,7 +79,7 @@ Stock.prototype.getRealTimeData = function (stocks) {
   const uniqueNames = this.getUniqueStockNames(stocks)
   const arrayOfRealTimeData = []
   console.log('arrayOfRealTimeData1', arrayOfRealTimeData);
-  
+
 
   const promisesToGetRealTimeDataForUniqueStocks = []
   uniqueNames.forEach((stock) => {
@@ -95,13 +94,13 @@ Stock.prototype.getRealTimeData = function (stocks) {
       })
 
     // console.log('arrayOfRealTimeData2', arrayOfRealTimeData);
-    
+
     // PubSub.subscribe('Stocks:Real-time-data-loaded', (event) => {
     //   console.log('this should be two... somethings', event.detail)
     // })
 
-    
-  
+
+
 };
 
 
@@ -114,7 +113,7 @@ Stock.prototype.getData = function() {
   .then((stocks) =>{
     PubSub.publish('Stock:data-loaded', stocks);
     this.getRealTimeData(stocks)
-    
+
 
     const total = this.getTotalFromData(stocks)
     PubSub.publish('Stocks:get-total', total)

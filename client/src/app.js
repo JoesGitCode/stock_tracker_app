@@ -7,6 +7,7 @@ const SavedStocksGridView = require('./views/saved_stocks_grid_view.js');
 const ProfitDisplay = require('./views/profit_display.js')
 const PageDisplay = require('./views/search_portfolio_display.js')
 const PieChart = require('./views/pie_chart_view.js')
+const RealTimeData = require('./models/real_time_data.js')
 
 
 
@@ -51,6 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedContainer = document.querySelector('#held_stocks')
   const savedStocksGridView = new SavedStocksGridView(savedContainer)
   savedStocksGridView.bindEvents();
+
+
+  const realTimeData = new RealTimeData()
+  realTimeData.gettingDBData()
 
   // const getPortfolioTotal = document.querySelector('#get-portfolio-total')
 
