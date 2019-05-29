@@ -9,17 +9,22 @@ const SavedStocksView = function(container) {
 SavedStocksView.prototype.render = function(stocks) {
 
   const initialStockValue = stocks.strike_price * stocks.quantity
-  
+
   const stockContainer = document.createElement('details')
   stockContainer.id = 'stock';
   this.container.appendChild(stockContainer)
-  
+
   const companyName = this.createHeading("Name: " + stocks.name)
   stockContainer.appendChild(companyName)
-  
+
   const totalValue = this.createHeading("Total Value: " + initialStockValue.toFixed(2))
   stockContainer.appendChild(totalValue)
-  
+
+  const deleteButton = this.createDeleteButton(stocks._id);
+  stockContainer.appendChild(deleteButton);
+  const spendingTotal = stocks.quantity * stocks.strike_price
+  const getSpendingsInTotal = this.createHeading("Total " + (spendingTotal).toFixed(2));
+
   PubSub.subscribe('Stocks:Real-time-data-loaded', (event) => {
     console.log('this should be two... somethings', event.detail)
     event.detail.forEach(stock => {
@@ -36,10 +41,6 @@ SavedStocksView.prototype.render = function(stocks) {
   summary.textContent = stocks.name + " " + stocks.strike_price
   stockContainer.appendChild(summary)
 
-  const deleteButton = this.createDeleteButton(stocks._id);
-  stockContainer.appendChild(deleteButton);
-  const spendingTotal = stocks.quantity * stocks.strike_price
-  const getSpendingsInTotal = this.createHeading("Total " + (spendingTotal).toFixed(2));
 
   stockContainer.appendChild(getSpendingsInTotal)
 })
