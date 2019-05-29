@@ -8,16 +8,31 @@ const SavedStocksView = function(container) {
 
 SavedStocksView.prototype.render = function(stocks) {
 
-  stockContainer = document.createElement('details')
-  stockContainer.id = stocks.name;
+  const initialStockValue = stocks.strike_price * stocks.quantity
+  
+  
+  const stockContainer = document.createElement('details')
+  stockContainer.id = 'stock';
   this.container.appendChild(stockContainer)
-
+  
   const companyName = this.createHeading("Name: " + stocks.name)
   stockContainer.appendChild(companyName)
-
-  const totalValue = this.createHeading("Total Value: " + (stocks.strike_price * stocks.quantity).toFixed(2))
+  
+  const totalValue = this.createHeading("Total Value: " + initialStockValue.toFixed(2))
   stockContainer.appendChild(totalValue)
-
+  
+  PubSub.subscribe('Stocks:Real-time-data-loaded', (event) => {
+    console.log('this should be two... somethings', event.detail)
+    event.detail.forEach(stock => {
+      if (stock.symbol === stocks.name){
+        const currentStockValue = stock.price * stocks.quantity
+        const realTimeValue = this.createHeading("Current Value: " + currentStockValue)
+        stockContainer.appendChild(realTimeValue)
+        const returnOnIncome = (currentStockValue - initialStockValue)/initialStockValue
+        const percentageChange = this.createHeading("Percentage Change: " + (returnOnIncome * 100).toFixed(2) + "%")
+        stockContainer.appendChild(percentageChange)
+      }
+    })
   const summary = document.createElement('summary')
   summary.textContent = stocks.name + " " + stocks.strike_price
   stockContainer.appendChild(summary)
@@ -29,8 +44,8 @@ SavedStocksView.prototype.render = function(stocks) {
 
   console.log("My Value", getSpendingsInTotal);
   stockContainer.appendChild(getSpendingsInTotal)
+})
 }
-
 
 SavedStocksView.prototype.createHeading = function(textContent){
   const heading = document.createElement('p');

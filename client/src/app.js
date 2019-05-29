@@ -36,7 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const stockModel = new StockModel(realTimeStockPrice, historicalStockPrice)
   stockModel.bindEvents()
   stockModel.getData()
-  stockModel.getRealTime()
+  // stockModel.getUniqueStockNames()
+  // stockModel.getRealTimeData()
 
   const toggle = document.querySelector("#dashboardToggle")
   console.log(toggle);
@@ -47,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedStocksGridView = new SavedStocksGridView(savedContainer)
   savedStocksGridView.bindEvents();
 
-  const getPortfolioTotal = document.querySelector('#get-portfolio-total')
+  // const getPortfolioTotal = document.querySelector('#get-portfolio-total')
 
 
 

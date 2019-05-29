@@ -1,6 +1,5 @@
 const PubSub = require ('../helpers/pub_sub.js')
 
-
 const ProfitDisplay = function (container){
   this.container = container
 }
@@ -8,9 +7,11 @@ const ProfitDisplay = function (container){
 
 
 ProfitDisplay.prototype.bindEvents = function() {
-  PubSub.subscribe('StockModel:Company-info-real-time-info', (event) => {
-    console.log(event);
+  PubSub.subscribe('Stock:data-loaded', (event) => {
+    console.log('Stock:data-loaded', event.detail);
+
   })
+
 };
 
 

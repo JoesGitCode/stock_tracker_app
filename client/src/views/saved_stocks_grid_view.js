@@ -22,4 +22,6 @@ SavedStocksGridView.prototype.render = function(stocks) {
 
 
 
+
+
 module.exports = SavedStocksGridView;

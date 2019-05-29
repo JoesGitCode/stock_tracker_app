@@ -2,17 +2,16 @@ const PubSub = require ('../helpers/pub_sub.js')
 const RequestHelper = require('../helpers/request_helper.js')
 
 
-
-
 const Stock = function (urlReal, urlHistorical) {
   this.urlReal = urlReal
+  console.log('realtime', urlReal);
+  
   this.urlHistorical = urlHistorical
   this.request = new RequestHelper('http://localhost:3000/api/stocks')
 };
 
+
 Stock.prototype.bindEvents = function () {
-
-
 
   PubSub.subscribe('SearchFormView:ticker-selected', (event) => {
     const stockTickerName = event.detail.toUpperCase()
@@ -36,33 +35,35 @@ Stock.prototype.bindEvents = function () {
     console.log(event);
     this.deleteStock(event.detail)
   })
-
-
-  PubSub.subscribe('search_portfolio_display:detail-selected', (event) => {
-    console.log('company info', event.detail);
-    const stockTickerName = event.detail.toUpperCase()
-    const requestHistorical = new RequestHelper(this.urlHistorical + stockTickerName)
-    console.log(requestHistorical);
-    requestHistorical.get()
-    .then((data) => {
-      const companyInfo = data
-      console.log(data);
-      PubSub.publish("StockModel:Small-graph-info" , companyInfo );
-    })
-  })
-
 };
 
 
 
+PubSub.subscribe('search_portfolio_display:detail-selected', (event) => {
+  console.log('company info', event.detail);
+  const stockTickerName = event.detail.toUpperCase()
+  const requestHistorical = new RequestHelper(this.urlHistorical + stockTickerName)
+  console.log(requestHistorical);
+  requestHistorical.get()
+  .then((data) => {
+    const companyInfo = data
+    console.log(data);
+    PubSub.publish("StockModel:Small-graph-info" , companyInfo );
+  })
+})
 
 
 
-Stock.prototype.getRealTime = function() {
 
-  PubSub.subscribe('Stock:data-loaded', (event)=> {
-    console.log(event.detail);
-    const data = event.detail
+
+
+
+
+
+Stock.prototype.getUniqueStockNames = function(data) {
+  // PubSub.subscribe('Stock:data-loaded', (event)=> {
+  //   console.log('what is this?', event.detail);
+  //   const data = event.detail
     const savedCompanyNames = []
     data.forEach((element) => savedCompanyNames.push(element.name))
 
@@ -70,22 +71,38 @@ Stock.prototype.getRealTime = function() {
       return self.indexOf(value) === index;
     }
     const uniqueValues = savedCompanyNames.filter(unique);
-    console.log(uniqueValues);
-    // const json = '?datatype=json'
-    // const requestRealTimeApi = new RequestHelper(companyRealTimeApi + stockTickerName + json)
-    // console.log(requestRealTimeApi);
-    // requestRealTimeApi.get()
-    //   .then((data) => {
-    //     const companyInfoReal = data
-    //     console.log(companyInfoReal);
-    //     PubSub.publish('StockModel:Company-info-real-time-info', data)
-    //   })
-  })
+    console.log('unique values', uniqueValues);
+    return uniqueValues
+  // })
 }
 
+Stock.prototype.getRealTimeData = function (stocks) {
+  const uniqueNames = this.getUniqueStockNames(stocks)
+  const arrayOfRealTimeData = []
+  console.log('arrayOfRealTimeData1', arrayOfRealTimeData);
+  
 
+  const promisesToGetRealTimeDataForUniqueStocks = []
+  uniqueNames.forEach((stock) => {
+    const json = '?datatype=json'
+    const requestRealTime = new RequestHelper(this.urlReal + stock + json)
+    const promiseToGetRealTimeDataForUniqueStock = requestRealTime.get()
+    promisesToGetRealTimeDataForUniqueStocks.push(promiseToGetRealTimeDataForUniqueStock)
+  })
+    Promise.all(promisesToGetRealTimeDataForUniqueStocks)
+      .then(dataForUniqueStocks => {
+        PubSub.publish('Stocks:Real-time-data-loaded', dataForUniqueStocks);
+      })
 
+    // console.log('arrayOfRealTimeData2', arrayOfRealTimeData);
+    
+    // PubSub.subscribe('Stocks:Real-time-data-loaded', (event) => {
+    //   console.log('this should be two... somethings', event.detail)
+    // })
 
+    
+  
+};
 
 
 
@@ -96,7 +113,8 @@ Stock.prototype.getData = function() {
   this.request.get()
   .then((stocks) =>{
     PubSub.publish('Stock:data-loaded', stocks);
-
+    this.getRealTimeData(stocks)
+    
 
     const total = this.getTotalFromData(stocks)
     PubSub.publish('Stocks:get-total', total)
@@ -118,10 +136,8 @@ Stock.prototype.getTotalFromData = function (data) {
 
   return totalAmount.toFixed(2)
 
-
 // console.log("dfsdfnsdfsnsndfsdfsdf", this.getTotalFromData(totalAmount));
 //  this.getTotalFromData(totalAmount)
-
 }
 
 

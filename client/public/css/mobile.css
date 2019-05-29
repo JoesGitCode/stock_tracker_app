@@ -1,3 +1,23 @@
+@import 'https://code.highcharts.com/css/highcharts.css';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: blue;
+    background-color: #343435;
+
+}
+
+
+#graph {
+   height: 800px;
+   width: 100vw;
+   
+}
+
+.highcharts-grid-line {
+    color: #D449B2;
 }
