@@ -11,11 +11,12 @@ PieChart.prototype.bindEvents = function() {
     stockData.forEach(stock => {
       dataArrayForPieChart.push({
         name: stock.name,
-        y: parseInt(stock.strike_price)
+        y: parseInt(stock.strike_price * stock.quantity)
       });
     });
     this.render(dataArrayForPieChart);
   });
+  console.log("dataforpiechart", dataArrayForPieChart);
 };
 
 PieChart.prototype.render = function(dataArrayForPieChart) {

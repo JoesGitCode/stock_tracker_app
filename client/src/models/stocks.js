@@ -82,12 +82,6 @@ Stock.prototype.getRealTimeData = function(stocks) {
       PubSub.publish("Stocks:Real-time-data-loaded", dataForUniqueStocks);
     }
   );
-
-  // console.log('arrayOfRealTimeData2', arrayOfRealTimeData);
-
-  // PubSub.subscribe('Stocks:Real-time-data-loaded', (event) => {
-  //   console.log('this should be two... somethings', event.detail)
-  // })
 };
 
 Stock.prototype.getData = function() {
@@ -105,6 +99,7 @@ Stock.prototype.getData = function() {
 
 Stock.prototype.getTotalFromData = function(data) {
   const valuesOfStocks = data.map(stock => {
+    console.log("quantity", stock.quantity);
     return stock.quantity * stock.strike_price;
   });
   const totalAmount = valuesOfStocks.reduce((a, b) => {
