@@ -1,79 +1,98 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <title></title>
-  <script src="js/bundle.js"></script>
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="https://code.highcharts.com/stock/highstock.js"></script>
-  <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="js/bundle.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
 
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/index_structure.css">
-  <link rel="stylesheet" href="css/display.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
-  <!-- <script src="https://code.highcharts.com/5.0.0/js/highcharts.js"></script> -->
-  <!-- <link href="https://code.highcharts.com/5.0.0/css/highcharts.css" rel="stylesheet" type="text/css"> -->
-  <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/mobile.css">
-  <link href="css/chart-style.css" rel="stylesheet" type="text/css">
-  <title>Stock Tracker</title>
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/index_structure.css" />
+    <link rel="stylesheet" href="css/display.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <script src="https://code.highcharts.com/5.0.0/js/highcharts.js"></script> -->
+    <!-- <link href="https://code.highcharts.com/5.0.0/css/highcharts.css" rel="stylesheet" type="text/css"> -->
+    <link
+      rel="stylesheet"
+      media="screen and (max-width: 768px)"
+      href="css/mobile.css"
+    />
+    <link href="css/chart-style.css" rel="stylesheet" type="text/css" />
+    <title>Stock Tracker</title>
+  </head>
+  <body>
+    <nav>
+      <div id="dashboard">
+        <div id="logo">
+          <h1 class="logo">Goldilocks and the Bear Market</h1>
+        </div>
 
-  <nav>
-
-    <div id="dashboard" >
-      <div id='logo'>
-      <h1 class="logo"> Goldilocks and the Bear Market</h1>
+        <div id="buttons">
+          <input
+            type="button"
+            class="toggler"
+            value="search"
+            id="dashboardToggle"
+          />
+          <input
+            type="button"
+            class="toggler"
+            value="portfolio"
+            id="searchToggle"
+          />
+        </div>
       </div>
+    </nav>
 
-      <div id='buttons'>
-      <input type="button" class="toggler" value= "search" id="dashboardToggle">
-      <input type="button" class="toggler"  value= "portfolio" id="searchToggle">
+    <div class="form_setup visibility" id="stock_search">
+      <div class="form_items">
+        <div>
+          <h1 class="stock-search-header">Invest in the Market</h1>
+        </div>
+        <div>
+          <h3 class="stock-search-label">
+            Enter company stock name and find the latest information
+          </h3>
+        </div>
+        <form id="input_stock_pick" autocomplete="off">
+          <div class="input_form_div">
+            <input
+              type="text"
+              id="stockname"
+              placeholder="Enter NYSE Stock Ticker"
+            />
+
+            <input
+              class="submit"
+              type="submit"
+              value="Submit"
+              id="searchSubmit"
+            />
+          </div>
+        </form>
+        <div class="visibility" id="banana">
+          <div class="search-box" id="stock_search_stock"></div>
+        </div>
       </div>
+      <div id="graph"></div>
     </div>
-  </nav>
 
-
-  <div class ="form_setup visibility" id="stock_search">
-    <div class="form_items">
-
-    <div>
-      <h1 class="stock-search-header">Invest in the Market</h1>
+    <div id="portfolio">
+      <div id="get-portfolio-total"></div>
+      <h2 class="textAlign">
+        Current market conditions: Not too hot, not too cold, just right!
+      </h2>
+      <div
+        id="pie-chart"
+        style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto; background-color: none"
+      ></div>
+      <div id="held_stocks"></div>
     </div>
-    <div>
-      <h3 class="stock-search-label">Enter company stock name and find the latest information</h3>
-    </div>
-    <form id="input_stock_pick" autocomplete="off">
-      <div class = "input_form_div">
-
-
-          <input type="text" id="stockname" placeholder="Enter NYSE Stock Ticker"  >
-
-
-        <input class="submit" type="submit" value="Submit" id="searchSubmit">
-      </div>
-    </form>
-    <div  class="visibility" id="banana">
-    <div class = "search-box"  id="stock_search_stock">
-    </div>
-  </div>
-  </div>
-      <div id="graph">
-      </div>
-  </div>
-
-
-
-  <div id="portfolio">
-    <div id="get-portfolio-total">
-    </div>
-    <h2 class="textAlign"> Current market conditions: Not too hot, not too cold, just right!</h2>
-    <div id="pie-chart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto; background-color: none"></div>
-    <div id="held_stocks"></div>
-  </div>
-
-
-</body>
+  </body>
 </html>

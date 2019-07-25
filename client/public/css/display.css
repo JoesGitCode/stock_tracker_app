@@ -1,9 +1,7 @@
-
 .visibility {
-    display: none;
+  display: none;
 }
 
-.toggler{
-  z-index:2;
-
+.toggler {
+  z-index: 2;
 }

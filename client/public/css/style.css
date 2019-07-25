@@ -1,16 +1,17 @@
-
-#stock{
-
+#stock {
   padding: 10px;
   border: 5px solid #e0e0e0;
-
 }
 
-#held_stocks{
+#held_stocks {
+  margin: 0 auto;
+  width: 100%;
+}
 
-  margin: 0 auto ;
-  width:100%;
+#stock_search_stock {
+  border: none;
+}
 
-
-
+#banana {
+  height: 0px;
 }

@@ -1,9 +1,9 @@
-*{
-  margin:0;
+* {
+  margin: 0;
 }
 
-html{
-  width:100%;
+body {
+  width: 100%;
   height: 100%;
   background: #023689;
 }
@@ -12,138 +12,126 @@ div{
   border:2px solid black;
 } */
 
-h4{
+h4 {
   font-size: 2rem;
   padding-bottom: 2%;
-
 }
 
-
-h3{
+h3 {
   font-size: 2rem;
   padding-top: 1%;
   font-weight: 300;
-
 }
 
-.toggler{
+.toggler {
   display: inline-block;
   background: none;
-  border:none;
+  border: none;
   padding: 2rem;
-
 
   color: white;
   font-size: 24px;
 }
 
-.toggler:hover{
-  color:grey;
+.toggler:hover {
+  color: grey;
 }
 
-.toggler:focus{
-  outline:none;
+.toggler:focus {
+  outline: none;
 }
 
-#companySearchRight{
+#companySearchRight {
   width: 75%;
   padding-right: 10%;
   padding-left: 5%;
 }
 
-#companySearchLeft{
+#companySearchLeft {
   width: 25%;
 }
 
-#companySearchRight, #companySearchLeft{
+#companySearchRight,
+#companySearchLeft {
   height: 50%;
 }
 
-.search-box{
-  padding-top: 3%;
-  padding-bottom: 30px;
-
-}
-
-h1,h2,h3,h4,h5{
+h1,
+h2,
+h3,
+h4,
+h5 {
   color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
-
-details{
+details {
   padding: 5%, 5%;
   margin: 2% 10% 2% 10%;
-  background-color:white;
+  background-color: white;
   border-radius: 0.5rem;
 
   font-size: 2rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
-summary{
-  color:black;
+summary {
+  color: black;
 }
 
-#dashboard{
-  width:100%;
+#dashboard {
+  width: 100%;
   display: flex;
-  padding-top:5%
+  /* padding-top: 5%; */
 }
 
-#buttons{
+#buttons {
   display: flex;
   justify-content: flex-end;
   padding-right: 10%;
-  width:50%;
+  width: 50%;
 }
 
-#logo{
-
-  width:50%;
-  padding-left: 10%
-
+#logo {
+  width: 50%;
+  padding-left: 10%;
 }
 
-.logo{
+.logo {
   padding-top: 2rem;
 }
 
-#get-portfolio-total{
+#get-portfolio-total {
   padding: 5rem;
   text-align: center;
 }
 
-
-
-.li{
+.li {
   border: 5px solid black;
   height: 75px;
-  list-style:none;
+  list-style: none;
 }
 
-.search-box{
-  width:100%;
+.search-box {
+  width: 100%;
   display: flex;
   background: white;
-  border:2px solid black;
+  border: 2px solid black;
 }
-
 
 details {
-  border:2px solid black;
+  border: 2px solid black;
 }
 
-.form_setup{
+.form_setup {
   text-align: center;
 }
 
-.form_setup h1{
+.form_setup h1 {
   font-size: 60px;
 }
 
-#stockname{
-
+#stockname {
   background: white;
   width: 30rem;
   height: 3rem;
@@ -151,24 +139,22 @@ details {
   outline: none;
   border-bottom: 2px solid white;
   text-transform: uppercase;
-
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: black;
   opacity: 0.5; /* Firefox */
   text-transform: capitalize !important;
 }
 
-.textAlign{
+.textAlign {
   text-align: center;
 }
 
-
-
-.submit{
+.submit {
   height: 3rem;
-  border:3px solid white;
+  border: 3px solid white;
   background: none;
   border-radius: 0.5rem;
   margin-left: 3%;
@@ -179,92 +165,83 @@ details {
   font-size: 2rem;
 }
 
-.submit:hover{
+.submit:hover {
   background: #21ce99;
-  color:white;
+  color: white;
 }
-.submit:focus{
+.submit:focus {
   background: #21ce99;
-  color:white;
+  color: white;
 }
 
-.stock-search-header{
+.stock-search-header {
   text-align: center;
   padding-top: 5%;
 }
 
-.stock-search-label{
+.stock-search-label {
   text-align: center;
-
 }
 
-
-#input_stock_pick{
+#input_stock_pick {
   padding-top: 3%;
   padding-bottom: 6%;
 }
 
-
-.input_form_div{
+.input_form_div {
   display: flex;
   justify-content: center;
 }
 
-#companySearchLeft{
+#companySearchLeft {
   text-align: left;
   padding-left: 10%;
-  color:black !important;
+  color: black !important;
   height: 30rem;
 }
 
-#companySearchLeft h1{
+#companySearchLeft h1 {
   font-size: 6rem;
-  padding-bottom:10%;
-  color:black !important;
-
+  padding-bottom: 10%;
+  color: black !important;
 }
 
-#companySearchLeft h4{
+#companySearchLeft h4 {
   font-size: 1.5rem;
-  color:black !important;
+  color: black !important;
 }
 
-#companSearchRight{
+#companSearchRight {
   height: 30rem;
 }
 
-
-.buyShareButton{
-
+.buyShareButton {
   height: 3rem;
-  border:3px solid white;
+  border: 3px solid white;
   border-radius: 0.25rem;
   margin-left: 3%;
   padding-left: 3%;
   padding-right: 3%;
   background: #21ce99;
-  color:white;
+  color: white;
 
   font-size: 1.5rem;
-
 }
 
-.buyShareBox{
-
+.buyShareBox {
   height: 2rem;
-  border:3px solid grey;
+  border: 3px solid grey;
   background: none;
   border-radius: 0.25rem;
   margin-left: 3%;
   padding-left: 3%;
   padding-right: 3%;
-  color:black;
+  color: black;
 
   font-size: 1.5rem;
-
 }
 
-#deleteButton{
+#deleteButton {
   background: green;
   font-size: 2rem;
   color: white;
