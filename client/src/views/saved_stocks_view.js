@@ -22,7 +22,6 @@ SavedStocksView.prototype.render = function(stocks) {
   stockContainer.appendChild(totalValue);
 
   PubSub.subscribe("Stocks:Real-time-data-loaded", event => {
-    console.log("this should be two... somethings", event.detail);
     event.detail.forEach(stock => {
       if (stock.symbol === stocks.name) {
         const currentStockValue = stock.price * stocks.quantity;
