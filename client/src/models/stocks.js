@@ -48,9 +48,6 @@ PubSub.subscribe("search_portfolio_display:detail-selected", event => {
 });
 
 Stock.prototype.getUniqueStockNames = function(data) {
-  // PubSub.subscribe('Stock:data-loaded', (event)=> {
-  //   console.log('what is this?', event.detail);
-  //   const data = event.detail
   const savedCompanyNames = [];
   data.forEach(element => savedCompanyNames.push(element.name));
 
@@ -58,9 +55,7 @@ Stock.prototype.getUniqueStockNames = function(data) {
     return self.indexOf(value) === index;
   };
   const uniqueValues = savedCompanyNames.filter(unique);
-  console.log("unique values", uniqueValues);
   return uniqueValues;
-  // })
 };
 
 Stock.prototype.getRealTimeData = function(stocks) {
@@ -106,12 +101,7 @@ Stock.prototype.getTotalFromData = function(data) {
     return a + b;
   });
 
-  // console.log("Yooooooooooooooo", totalAmount);
-
   return totalAmount.toFixed(2);
-
-  // console.log("dfsdfnsdfsnsndfsdfsdf", this.getTotalFromData(totalAmount));
-  //  this.getTotalFromData(totalAmount)
 };
 
 Stock.prototype.postBoughtStock = function(BuyShareInfo) {

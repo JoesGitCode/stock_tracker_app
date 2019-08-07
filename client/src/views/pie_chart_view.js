@@ -7,6 +7,8 @@ const PieChart = function(container) {
 PieChart.prototype.bindEvents = function() {
   PubSub.subscribe("Stock:data-loaded", event => {
     const stockData = event.detail;
+    console.log("whats the detail?", event.detail);
+
     const dataArrayForPieChart = [];
     stockData.forEach(stock => {
       dataArrayForPieChart.push({
