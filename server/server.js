@@ -9,7 +9,7 @@ const publicPath = path.join(__dirname, "../client/public");
 app.use(express.static(publicPath));
 app.use(parser.json());
 
-MongoClient.connect("mongodb://localhost:27017")
+MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017")
   .then(client => {
     const db = client.db("stock_portfolio");
     const stocksCollection = db.collection("stocks");
@@ -18,6 +18,6 @@ MongoClient.connect("mongodb://localhost:27017")
   })
   .catch(console.error);
 
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
   console.log(`Listening on Port ${this.address().port}`);
 });
