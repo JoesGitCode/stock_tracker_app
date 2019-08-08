@@ -13,7 +13,7 @@ db.stocks.insertMany([
     strike_price: 900
   },
   {
-    name: "BAZA3",
+    name: "AAPL",
     quantity: 100,
     strike_price: 25
   }

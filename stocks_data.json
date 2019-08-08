@@ -1,0 +1,7 @@
+{"_id":{"$oid":"5cefa6aa0a21143aeb616af7"},"name":"AAPL","quantity":"30","strike_price":"179.06"}
+{"_id":{"$oid":"5cf2526c0a21143aeb616afb"},"name":"TSCO","quantity":"1000","strike_price":"99.18"}
+{"_id":{"$oid":"5d397417b66eb5b32a77ce75"},"name":"ADBE","quantity":"50","strike_price":"307.87"}
+{"_id":{"$oid":"5d397720b66eb5b32a77ce7d"},"name":"NVDA","quantity":"100","strike_price":"175.73"}
+{"_id":{"$oid":"5d39aabd6f8eefcc45dc4f46"},"name":"AMGN","quantity":"10","strike_price":"176.01"}
+{"_id":{"$oid":"5d39ab016f8eefcc45dc4f47"},"name":"INTC","quantity":"100","strike_price":"51.755"}
+{"_id":{"$oid":"5d39bb6c6f8eefcc45dc4f4c"},"name":"SPLK","quantity":"100","strike_price":"139.945"}
