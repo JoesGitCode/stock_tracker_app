@@ -26,7 +26,6 @@ PageDisplay.prototype.bindEvents = function() {
 
   const searchSubmit = document.querySelector("#input_stock_pick");
   searchSubmit.addEventListener("submit", event => {
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", event);
     const stockSearchResult = document.querySelector("#banana");
     console.log(stockSearchResult);
     stockSearchResult.classList.remove("visibility");
@@ -43,7 +42,6 @@ PageDisplay.prototype.bindEvents = function() {
 
   const activateDetail = document.querySelector("#held_stocks");
   activateDetail.addEventListener("click", event => {
-    console.log(event);
     let comapanyNameDetail = event.toElement.innerText;
     // const meh = comapanyNameDetail.split(" ")
     comapanyNameDetail = comapanyNameDetail.substr(
