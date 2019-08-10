@@ -56,8 +56,6 @@ Stock.prototype.getUniqueStockNames = function(data) {
 Stock.prototype.getRealTimeData = function(stocks) {
   const uniqueNames = this.getUniqueStockNames(stocks);
   const arrayOfRealTimeData = [];
-  console.log("arrayOfRealTimeData1", arrayOfRealTimeData);
-
   const promisesToGetRealTimeDataForUniqueStocks = [];
   uniqueNames.forEach(stock => {
     const json = "?datatype=json";
@@ -89,7 +87,6 @@ Stock.prototype.getData = function() {
 
 Stock.prototype.getTotalFromData = function(data) {
   const valuesOfStocks = data.map(stock => {
-    console.log("quantity", stock.quantity);
     return stock.quantity * stock.strike_price;
   });
   const totalAmount = valuesOfStocks.reduce((a, b) => {

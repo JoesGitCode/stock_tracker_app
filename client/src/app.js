@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
   stockGridView.bindEvents();
 
   const graphContainer = document.querySelector("#graph");
-  console.log(graphContainer);
   const graphView = new GraphView(graphContainer);
   graphView.bindEvents();
 
@@ -38,17 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const stockModel = new StockModel(realTimeStockPrice, historicalStockPrice);
   stockModel.bindEvents();
   stockModel.getData();
-  // stockModel.getUniqueStockNames()
-  // stockModel.getRealTimeData()
 
   const toggle = document.querySelector("#dashboardToggle");
-  console.log(toggle);
   const pageDisplay = new PageDisplay(toggle);
   pageDisplay.bindEvents();
 
   const savedContainer = document.querySelector("#held_stocks");
   const savedStocksGridView = new SavedStocksGridView(savedContainer);
   savedStocksGridView.bindEvents();
-
-  // const getPortfolioTotal = document.querySelector('#get-portfolio-total')
 });

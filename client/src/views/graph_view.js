@@ -7,7 +7,6 @@ const GraphView = function(container) {
 
 GraphView.prototype.bindEvents = function() {
   PubSub.subscribe("StockModel: Company-historical-info", event => {
-    console.log("company info", event.detail);
     const companyInfo = event.detail;
     const containerc = this.container;
 
@@ -17,7 +16,6 @@ GraphView.prototype.bindEvents = function() {
 
 GraphView.prototype.smallGraph = function(container) {
   PubSub.subscribe("StockModel:Small-graph-info", event => {
-    console.log("company info", event.detail);
     const containerb = container;
     const companyInfo = event.detail;
     this.render(companyInfo);

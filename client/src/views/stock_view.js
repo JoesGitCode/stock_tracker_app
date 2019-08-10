@@ -4,7 +4,6 @@ const Graph = require("./graph_view.js");
 const StockView = function(container1, container2) {
   this.container = container1;
   this.container2 = container2;
-  console.log(this.container);
 };
 
 StockView.prototype.render = function(companyInfo) {
@@ -17,7 +16,6 @@ StockView.prototype.render = function(companyInfo) {
 
   const companySymbol = this.createSymbol(companyInfo.symbol);
   companyContainerLeft.appendChild(companySymbol);
-  console.log(companyInfo.historical.length);
   const displayCompanyClose = `Close: ${
     companyInfo.historical[companyInfo.historical.length - 1].close
   }`;
@@ -64,14 +62,6 @@ StockView.prototype.render = function(companyInfo) {
 
 StockView.prototype.renderPortfolioTotal = function(total) {
   this.container2.innerHTML = "";
-
-  // const companyContainerLeft = document.createElement('div');
-  // const companyContainerRight = document.createElement('div');
-  // companyContainerLeft.id = 'total-left'
-  // companyContainerLeft.id = 'total-right'
-  // this.container2.appendChild(companyContainerLeft)
-  // this.container2.appendChild(companyContainerRight)
-
   const totalRender = this.renderTotal(total);
   this.container2.appendChild(totalRender);
 };
@@ -182,7 +172,6 @@ StockView.prototype.createPurchase = function(form) {
     quantity: form.quantity.value,
     strike_price: form.strike_price.value
   };
-  console.log(newPurchase);
   return newPurchase;
 };
 

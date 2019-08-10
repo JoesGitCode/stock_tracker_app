@@ -8,8 +8,6 @@ PageDisplay.prototype.bindEvents = function() {
   toggleSearch.addEventListener("click", event => {
     const heldPage = document.querySelector("#portfolio");
     const searchPage = document.querySelector("#stock_search");
-    console.log(event.target);
-    console.log(searchPage);
     heldPage.classList.add("visibility");
     searchPage.classList.remove("visibility");
   });
@@ -18,8 +16,6 @@ PageDisplay.prototype.bindEvents = function() {
   toggleStock.addEventListener("click", event => {
     const heldPage = document.querySelector("#portfolio");
     const searchPage = document.querySelector("#stock_search");
-    console.log(event.target);
-    console.log(searchPage);
     heldPage.classList.remove("visibility");
     searchPage.classList.add("visibility");
   });
@@ -27,23 +23,12 @@ PageDisplay.prototype.bindEvents = function() {
   const searchSubmit = document.querySelector("#input_stock_pick");
   searchSubmit.addEventListener("submit", event => {
     const stockSearchResult = document.querySelector("#banana");
-    console.log(stockSearchResult);
     stockSearchResult.classList.remove("visibility");
   });
-
-  // const buySubmit = document.querySelector("#buy-share-form")
-  // console.log("buySubmit", buySubmit);
-  // buySubmit.addEventListener('submit', (event) => {
-  //   console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",event);
-  //   const buyResult = document.querySelector('#banana')
-  //   console.log(buyResult);
-  //   buyResult.classList.add('visibility')
-  // })
 
   const activateDetail = document.querySelector("#held_stocks");
   activateDetail.addEventListener("click", event => {
     let comapanyNameDetail = event.toElement.innerText;
-    // const meh = comapanyNameDetail.split(" ")
     comapanyNameDetail = comapanyNameDetail.substr(
       0,
       comapanyNameDetail.indexOf(" ")
@@ -54,7 +39,6 @@ PageDisplay.prototype.bindEvents = function() {
     );
     const graph = new Graph(activateDetail);
     graph.renderSmallGraph();
-    console.log(comapanyNameDetail);
   });
 };
 
