@@ -5,7 +5,9 @@ const parser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
 const createRouter = require("./helpers/create_router.js");
 const cors = require("cors");
+const dotenv = require("dotenv");
 
+dotenv.config({ path: "../config.env" });
 app.use(cors());
 
 const publicPath = path.join(__dirname, "../client/public");

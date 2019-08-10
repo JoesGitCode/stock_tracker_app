@@ -3,10 +3,10 @@ const RequestHelper = require("../helpers/request_helper.js");
 
 const Stock = function(urlReal, urlHistorical) {
   this.urlReal = urlReal;
-  console.log("realtime", urlReal);
-
   this.urlHistorical = urlHistorical;
-  this.request = new RequestHelper("http://localhost:3000/api/stocks");
+  this.request = new RequestHelper(
+    "http://stock-tracker-3000.herokuapp.com/api/stocks"
+  );
 };
 
 Stock.prototype.bindEvents = function() {
@@ -22,27 +22,22 @@ Stock.prototype.bindEvents = function() {
   });
 
   PubSub.subscribe("stock_view:shares-bought-published", event => {
-    console.log(event.detail);
     this.postBoughtStock(event.detail);
   });
 
   // DELETE
   PubSub.subscribe("stock_view:stock-delete-clicked", event => {
-    console.log(event);
     this.deleteStock(event.detail);
   });
 };
 
 PubSub.subscribe("search_portfolio_display:detail-selected", event => {
-  console.log("company info", event.detail);
   const stockTickerName = event.detail.toUpperCase();
   const requestHistorical = new RequestHelper(
     this.urlHistorical + stockTickerName
   );
-  console.log(requestHistorical);
   requestHistorical.get().then(data => {
     const companyInfo = data;
-    console.log(data);
     PubSub.publish("StockModel:Small-graph-info", companyInfo);
   });
 });
@@ -61,8 +56,6 @@ Stock.prototype.getUniqueStockNames = function(data) {
 Stock.prototype.getRealTimeData = function(stocks) {
   const uniqueNames = this.getUniqueStockNames(stocks);
   const arrayOfRealTimeData = [];
-  console.log("arrayOfRealTimeData1", arrayOfRealTimeData);
-
   const promisesToGetRealTimeDataForUniqueStocks = [];
   uniqueNames.forEach(stock => {
     const json = "?datatype=json";
