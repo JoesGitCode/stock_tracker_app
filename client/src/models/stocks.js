@@ -56,6 +56,8 @@ Stock.prototype.getUniqueStockNames = function(data) {
 Stock.prototype.getRealTimeData = function(stocks) {
   const uniqueNames = this.getUniqueStockNames(stocks);
   const arrayOfRealTimeData = [];
+  console.log("arrayOfRealTimeData1", arrayOfRealTimeData);
+
   const promisesToGetRealTimeDataForUniqueStocks = [];
   uniqueNames.forEach(stock => {
     const json = "?datatype=json";
