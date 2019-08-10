@@ -5,7 +5,7 @@ const Stock = function(urlReal, urlHistorical) {
   this.urlReal = urlReal;
   this.urlHistorical = urlHistorical;
   this.request = new RequestHelper(
-    "http://stock-tracker-3000.herokuapp.com/api/stocks"
+    "https://stock-tracker-3000.herokuapp.com/api/stocks"
   );
 };
 
